@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="constitucional.css">
+    <link rel="icon" href="escudofav.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>Envío de Expedientes Digitales</title>
+</head>
+<header>
+    <h1 action="enviar.py" method="post">ENVÍO DE EXPEDIENTES DIGITALES A LA <br> SECRETARÍA DE CASACIÓN PENAL CORTE SUPREMA DE JUSTICIA</h1>
+</header> <br> <br>
+<body>
+<div class="tab-buttons">
+    <button class="tab-button active-tab-button" onclick="toggleTab(0)">Información del Proceso</button> 
+    <button class="tab-button" onclick="toggleTab(1)">Sujetos Procesales</button>
+    <button class="tab-button" onclick="toggleTab(2)">Tab 3</button>
+</div>
+<div class="tab" id="tab1">
+    
+    <form id="formulario" action="enviar.py" method="post">
+        <section id="seccion-1">
+            <h2>Información del proceso</h2> 
+            <p><strong>* Campos obligatorios.</strong></p>
+            <div id="cui-container">
+                <label for="CUI" class="obligatorio">Código Único de Identificación (CUI)</label>
+                <p>Acuerdo 201 de 1997 de la Sala Administrativa del Consejo Superior de la Judicatura modificado por el Acuerdo 1412 de 2002. </p>
+                <input type="text" id="cui" name="cui" maxlength="23" required>
+            </div>
+            <label for="Tipo_Proceso" class="obligatorio">Tipo de Proceso:</label>
+            <div class="custom-select">
+                <select id="proceso" name="proceso" required>
+                    <option value="seleccion1">Seleccione una opción</option>
+                    <option value="Constitucional">Constitucionales</option>
+                    <option value="Ordinario">Ordinarios</option>
+                </select>
+            </div>
+            
+            <button id="boton-volver" class="button">Volver</button>
+            <button id="siguientepag1" class="button">Siguiente</button>
+            
+            <br><br>
+        </div>
+
+
+<div class="tab2" id="tab2"> 
+    <span id="proceso-constitucional" style="display: none;">
+        <label for="Tipo_Proceso_Constitucional" class="obligatorio">Tipo de Proceso Constitucional:</label>
+        <div class="custom-select">
+            <select name="proceso-constitucional" name="proceso-constitucional" required>
+                <option value="opciones">Seleccione una opción</option>
+                <option value="Primera">TUTELA PRIMERA INSTANCIA POR COMPETENCIA</option>
+                <option value="Impugnacion">IMPUGNACIÓN DE TUTELA</option>
+                <option value="Consultaincdesa">CONSULTA INCIDENTE DESACATO</option>
+                <option value="Consultaincdesa">RECUSACIÓN E IMPEDIMENTO DE TUTELA</option>
+                <option value="Colision">COLISIÓN EN TUTELA</option>
+                <option value="Habeas">IMPUGNACIÓN DE HABEAS CORPUS</option>
+                <option value="Otros">OTROS PROCESOS CONSTITUCIONALES</option>                                
+            </select>                    
+        </div>
+        <div id="otrosInput" style="display: none;">
+            <label for="otrosProcesos" class="obligatorio">Indique el tipo de proceso:</label>
+            <input type="text" id="otrosProcesos" name="otrosProcesos" required>
+        </div> <br><br>
+        <button id="boton-volver" class="button">Volver</button>
+        <button id="siguientepag2" class="button">Siguiente</button>
+        </span>
+</div>
+<div class="tab" id="tab3">
+    <h2>Tab 3 Content</h2>
+    <p>Description for Tab 3 goes here.</p>
+
+    <button id="boton-volver" class="button">Volver</button>
+<button id="siguientepag3" class="button">Siguiente</button>
+</div> 
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
