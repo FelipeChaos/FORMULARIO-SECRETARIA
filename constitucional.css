@@ -21,7 +21,7 @@ header {
     background-image: url(Logo_Sala_Penal-removebg-preview.png);
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: 400px center;
+    background-position: 200px center;
     border-radius: 3%;
 }
 
@@ -80,6 +80,7 @@ input[type="file"],
 input[type="number"],
 input[type="email"],
 input[type="date"],
+input[type="url"],
 select, .custom-select select {
     width: 70%;
     padding: 10px;

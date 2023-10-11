@@ -263,6 +263,8 @@ function agregarCamposApoderado(boton) {
             <label for="correocons1" class="obligatorio">Correo Electrónico</label>
             <p>Relacione el correo electrónico aportado al Registro Nacional de Abogados y otros donde pueda ser contactado.</p>
             <input type="email" name="correocons1" required>
+            <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
+            <input type="number" min=0 max = 9999999999999999 required>
             <button type="button" onclick="eliminarCampo('apoderado', this)">Eliminar Apoderado</button>
             </div>
             </div>
@@ -289,6 +291,8 @@ function agregarCamposAgenteOficioso(boton) {
             <label for="correo-agente" class="obligatorio">Correo Electrónico</label>
             <p>Relacione el correo electrónico aportado al Registro Nacional de Abogados y otros donde pueda ser contactado.</p>
             <input type="email" name="correo-agente" required>
+            <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
+            <input type="number" min=0 max = 9999999999999999 required>
             <button type="button" onclick="eliminarCampo('agenteof', this)">Eliminar Agente Oficioso</button>
             </div>
             </div>

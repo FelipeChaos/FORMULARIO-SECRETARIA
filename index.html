@@ -218,13 +218,13 @@
                                             <td>
                                                 <div id="juzgado1ra">
                                                     <label for="juzgado1ra" class="obligatorio">Indique el despacho de Primera Instancia</label>
-                                                    <input type="text" name="juzgado1ra" id="juzgado1ra">
+                                                    <input type="text" name="juzgado1ra" id="juzgado1ra" required>
                                                     <label for="correojuz1ra" class="obligatorio">Correo:</label>
                                                     <p>Indique un correo electrónico para notificaciones</p>
                                                     <input type="email" id="correojuz1rains" class="obligatorio" required>
                                                     <label for="teljuz1ra" class="obligatorio">Número de teléfono:</label>
                                                     <p>Número de teléfono donde pueda ser contactado fácilmente</p>
-                                                    <input type="text" id="teljuz1ra" class="obligatorio" required>
+                                                    <input type="number" minlength="10" maxlength="10" id="teljuz1ra" class="obligatorio" required>
                                                     <label for="dirjuz1ra" class="obligatorio">Dirección:</label>
                                                     <p>Dirección física para notificaciones.</p>
                                                     <input type="text" id="dirjuz1ra" class="obligatorio" required> <br>
@@ -236,13 +236,13 @@
                                             <td>
                                                 <div id="juzgado2da">
                                                     <label for="juzgado2da" class="obligatorio">Indique el despacho de Segunda Instancia</label>
-                                                    <input type="text" name="juzgado2da" id="juzgado2da">
+                                                    <input type="text" name="juzgado2da" id="juzgado2da" required>
                                                     <label for="correojuz2da" class="obligatorio">Correo:</label>
                                                     <p>Indique un correo electrónico para notificaciones</p>
                                                     <input type="email" id="correojuz2dains" class="obligatorio" required>
                                                     <label for="teljuz2da" class="obligatorio">Número de teléfono:</label>
                                                     <p>Número de teléfono donde pueda ser contactado fácilmente</p>
-                                                    <input type="text" id="teljuz2da" class="obligatorio" required>
+                                                    <input type="number" id="teljuz2da" minlength="10" maxlength="10" class="obligatorio" required>
                                                     <label for="dirjuz2da" class="obligatorio">Dirección:</label>
                                                     <p>Dirección física para notificaciones.</p>
                                                     <input type="text" id="dirjuz2da" class="obligatorio" required> <br>
@@ -261,10 +261,6 @@
                                                               
                         <button id="mostrar-sujetos" type="button">Sujetos Procesales</button><br><br>
                         
-
-
-
-
                             <!-- INCIO SECCIÓN Sujetos Procesales -->
 
                 <section id="sujetos-procesales" style="display: none;">
@@ -293,7 +289,7 @@
                                     <label for="direccionresi" class="obligatorio">Dirección residencia</label>
                                     <input type="text" name="direccionresi1" required>
                                     <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
-                                    <input type="number" min=0 max = 9999999999999999 required>
+                                    <input type="number" minlength="10" maxlength="10" required>
                                     <label for="correocons1" class="obligatorio">Correo Electrónico</label>
                                     <input type="email" name="correocons1" required>
                                 </div>
@@ -309,6 +305,8 @@
                                                 <label for="correocons1" class="obligatorio">Correo Electrónico</label>
                                                     <p>Relacione el correo electrónico aportado al Registro Nacional de Abogados y otros donde pueda ser contactado.</p>                                                    </p>
                                                 <input type="email" name="correocons1" required>
+                                                <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
+                                               <input type="number" minlength="10" maxlength="10" required>
                                             </div>
                                     </div>
                                         <div id="agenteof" style="display: none;">
@@ -323,7 +321,8 @@
                                                 <label for="correocons1" class="obligatorio">Correo Electrónico</label>
                                                     <p>Relacione el correo electrónico aportado al Registro Nacional de Abogados y otros donde pueda ser contactado.</p>                                                    </p>
                                                 <input type="email" name="correocons1" required>
-            
+                                                <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
+                                                <input type="number" minlength="10" maxlength="10" required>
                                             </div>
                                         </div>
                                                     </div>
@@ -347,7 +346,7 @@
                                                                 <input type="email" id="correo1" name="correo1" class="obligatorio" required>
                                                                 <label for="tel1" class="obligatorio">Número de teléfono:</label>
                                                                 <p>Número de teléfono donde pueda ser contactado fácilmente</p>
-                                                                <input type="text" id="tel1" class="obligatorio" required>
+                                                                <input type="number" id="tel1" minlength="10" maxlength="10" class="obligatorio" required>
                                                                 <label for="dir1" class="obligatorio">Dirección:</label>
                                                                 <p>Dirección física para notificaciones.</p>
                                                                 <input type="text" id="dir1" class="obligatorio" required>
@@ -377,7 +376,7 @@
                                     <label for="direccionresi" class="obligatorio">Dirección residencia</label>
                                     <input type="text" name="direccionresi1" required>
                                     <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
-                                    <input type="number" min=0 max = 99999999999 required>
+                                    <input type="number" minlength="10" maxlength="10" required>
                                     <label for="correocons1" class="obligatorio">Correo Electrónico</label>
                                     <input type="email" name="correocons1" required>
                                     <button type="button" onclick="toggleCamposApoderado()" class="boton-accion">Agregar Apoderado</button> <br> <br>
@@ -395,7 +394,7 @@
                                             <p>Relacione el correo electrónico aportado al Registro Nacional de Abogados y otros donde pueda ser contactado.</p>                                                    </p>
                                         <input type="email" name="correocons1" required>
                                         <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
-                                        <input type="number" min=0 max = 99999999999 required>
+                                        <input type="number" minlength="10" maxlength="10" required>
                                     </div>
                                     <button type="button" onclick="agregarCamposprocesadocont()">Agregar un nuevo campo</button>
                             </div>
@@ -404,24 +403,37 @@
                             <div class="text" style="display: block;">
                                 <label for="nombrevict" class="obligatorio">Nombre Victima - Parte Civil</label>
                                 <input type="text" id="nombrevic" class="obligatorio" required>
+                                <label for="tipodocvic" class="obligatorio">Tipo de documento</label>
+                                <select name="tipodocv" id="tipodocvic">
+                                    <option value="seleciondoc">Seleccione un tipo de documento</option>
+                                    <option value="cedula">Cédula de Ciudadania</option>
+                                    <option value="ti">Tarjeta de Identidad</option>
+                                    <option value="cedulaext">Cédula de extranjería</option>
+                                    <option value="pasporte">Pasaporte</option>
+                                </select>
+                                <label for="numero_vict" class="obligatorio">Número documento identidad</label>
+                                <input type="number" id="numerovic" name="numerodocvict" required>
+
                                 <label for="correo1" class="obligatorio">Correo:</label>
                                 <p>Indique un correo electrónico para notificaciones</p>
                                 <input type="email" id="correovict" name="correovicti" class="obligatorio" required>
                                 <label for="telvicti" class="obligatorio">Número de teléfono:</label>
                                 <p>Número de teléfono donde pueda ser contactado fácilmente</p>
-                                <input type="text" id="telvicti" class="obligatorio" required>
+                                <input type="number" id="telvicti" minlength="10" maxlength="10" class="obligatorio" required>
                                 <label for="dirvict" class="obligatorio">Dirección:</label>
                                 <p>Dirección física para notificaciones.</p>
                                 <input type="text" id="dirvict" class="obligatorio" required>
                             </div>
                             <label name="defensor" id="defensor" class="obligatorio">Representante de Victimas</label>
                             <input type="text" id="defensor" required>
+                                <label for="numero_vict" class="obligatorio">Número documento identidad</label>
+                                <input type="number" id="numerovic" name="numerodocvict" required>
                                 <label for="correo" class="obligatorio">Correo:</label>
                                 <p>Relacione el correo electrónico aportado al Registro Nacional de Abogados y otros donde pueda ser contactado.</p>
                                 <input type="email" id="correodef" name="correodef" class="obligatorio" required>
                                 <label for="teldef" class="obligatorio">Número de teléfono:</label>
                                 <p>Número de teléfono donde pueda ser contactado fácilmente</p>
-                                <input type="number" id="teldef" class="obligatorio" required>
+                                <input type="number" id="teldef" minlength="10" maxlength="10" class="obligatorio" required>
                                 <label for="dirdef" class="obligatorio">Dirección:</label>
                                 <p>Dirección física para notificaciones.</p>
                                 <input type="text" id="dirdef" class="obligatorio" required>
@@ -448,10 +460,10 @@
                                 <input type="text">
                                 <label for="telefono" class="obligatorio">Telefono</label>
                                     <p>Indique un número de telefono</p>
-                                <input type="text">
+                                <input type="number" id="telfisc" minlength="10" maxlength="10" required>
                                 <label for="direcfis" class="obligatorio">Direccion</label>
                                     <p>Indique la dirección física de la fiscalia</p>
-                                <input type="text">
+                                <input type="email" required>
                             </div>
                             <button type="button" onclick="agregarCampo('')">Agregar otro sujeto procesal</button>
 
@@ -476,7 +488,7 @@
                     <input type="text" required>
                     <label for="link" class="obligatorio">Hipervinculo</label> 
                         <p>Anexe el hipervínculo para aceder al proceso</p>
-                    <input type="text" required>
+                    <input type="url" required>
             </section>
                                             <!-- FIN TERCERA SECCIÓN -->
 
