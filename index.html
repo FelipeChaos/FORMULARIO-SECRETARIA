@@ -137,8 +137,8 @@
                                 <div class="custom-select">
                                     <select name="proceso-ordinario" name="proceso-ordinario" required>
                                         <option value="opcionesley">Seleccione una opción</option>
-                                        <option value="906">906</option>
-                                        <option value="600">600</option>
+                                        <option value="906">LEY 906 DE 2004</option>
+                                        <option value="600">LEY 600 DE 2000</option>
                                         <option value="1098">1098 INFANCIA Y ADOLESCENCIA</option>
                                         <option value="1826">1826 PROCEDIMIENTO ABREVIADO</option>
                                         <option value="522">522 JUSTICIA PENAL MILITAR</option>
@@ -146,7 +146,7 @@
                                         <option value="975">975 JUSTICIA Y PAZ</option>
                                         </select>
                                 </div>
-                                <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conoció de la acción Constitucional</p>
+                                <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conoció del proceso</p>
                                 <input type="text" id="magistradocsj" class="obligatorio" required>
                                 <label for="fechaauto" class="obligatorio">Fecha Auto:</label>
                                 <input type="date" id="fecha" name="fecha" required>
@@ -217,8 +217,7 @@
                                         <tr>
                                             <td>
                                                 <div id="juzgado1ra">
-                                                    <label for="juzgado1ra" class="obligatorio">Indique el Juzgado de Primera Instancia</label>
-                                                    <p>Que conocío del recurso.</p>
+                                                    <label for="juzgado1ra" class="obligatorio">Indique el despacho de Primera Instancia</label>
                                                     <input type="text" name="juzgado1ra" id="juzgado1ra">
                                                     <label for="correojuz1ra" class="obligatorio">Correo:</label>
                                                     <p>Indique un correo electrónico para notificaciones</p>
@@ -229,12 +228,14 @@
                                                     <label for="dirjuz1ra" class="obligatorio">Dirección:</label>
                                                     <p>Dirección física para notificaciones.</p>
                                                     <input type="text" id="dirjuz1ra" class="obligatorio" required> <br>
+                                                    <label for="sentencia1inst">Sentencia de Primera Instancia</label>
+                                                    <input type="date" id="sentencia1" name="sentencia1" class="obligatorio" required>
                                                 </div>
                                             </td>
+                                            
                                             <td>
                                                 <div id="juzgado2da">
-                                                    <label for="juzgado2da" class="obligatorio">Indique el Juzgado de Segunda Instancia</label>
-                                                    <p>Que conocío del recurso.</p>
+                                                    <label for="juzgado2da" class="obligatorio">Indique el despacho de Segunda Instancia</label>
                                                     <input type="text" name="juzgado2da" id="juzgado2da">
                                                     <label for="correojuz2da" class="obligatorio">Correo:</label>
                                                     <p>Indique un correo electrónico para notificaciones</p>
@@ -245,16 +246,24 @@
                                                     <label for="dirjuz2da" class="obligatorio">Dirección:</label>
                                                     <p>Dirección física para notificaciones.</p>
                                                     <input type="text" id="dirjuz2da" class="obligatorio" required> <br>
+                                                    <label for="sentencia2inst">Sentencia de Segunda Instancia</label>
+                                                    <input type="date" class="obligatorio" required>
                                                 </div>
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
+                                <label for="fechaauto" class="obligatorio">Fecha de prescipción:</label>
+                                <input type="date" id="fecha" name="fecha" required> <br>
+
                                 <button id="juz2dainstan" type="button" onclick="toggleJuzgado2da()">Agregar Juzgado 2da Instancia</button>
                             </section>
                                                               
                         <button id="mostrar-sujetos" type="button">Sujetos Procesales</button><br><br>
                         
+
+
+
 
                             <!-- INCIO SECCIÓN Sujetos Procesales -->
 
@@ -430,12 +439,9 @@
                                             <!-- Tercera columna ordinarios: Fiscalía/acusadorprivado/ procuraduria -->
                         <td id="fiscalia-procuraduria-container" style="display: none;">
                             <div class="text" style="display: block;">
-                                <label for="sentencia1inst">Sentencia de Primera Instancia</label>
-                                <input type="text" id="sentencia1" name="sentencia1" class="obligatorio" required>
-                                <label for="sentencia2inst">Sentencia de Segunda Instancia</label>
-                                <input type="text" class="obligatorio" required>
+
                                 <label for="fiscalia_procuraduria" class="obligatorio">Fiscalía / Acusador privado</label>
-                                    <p>Indique el nombre de la fiscalía ó acusador privado que presento la acusación / resolución de acusación</p>
+                                    <p>Indique el nombre de la Fiscalía ó acusador privado que presento la acusación</p>
                                 <input type="text">
                                 <label for="correofis1" class="obligatorio">Correo</label> 
                                     <p>Indique el correo para las notificaciones</p>
@@ -446,8 +452,6 @@
                                 <label for="direcfis" class="obligatorio">Direccion</label>
                                     <p>Indique la dirección física de la fiscalia</p>
                                 <input type="text">
-                                <label for="fechaauto" class="obligatorio">Fecha Auto de prescipción:</label>
-                                    <input type="date" id="fecha" name="fecha" required> <br>
                             </div>
                             <button type="button" onclick="agregarCampo('')">Agregar otro sujeto procesal</button>
 
