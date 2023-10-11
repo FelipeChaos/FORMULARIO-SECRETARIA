@@ -9,7 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <title>Envío de Expedientes Digitales</title>
 </head>
-<body>
+                                                                                                <!-- seccion 1 -->
+<body> 
     <header>
         <h1>ENVÍO DE EXPEDIENTES DIGITALES A LA <br> SECRETARÍA DE CASACIÓN PENAL CORTE SUPREMA DE JUSTICIA</h1>
     </header>
@@ -30,19 +31,13 @@
                     <option value="Ordinario">Ordinarios</option>
                 </select>
             </div>
-                    <!-- Campos para proceso Constitucional -->
+                  
+            <!-- Campos para proceso Constitucional -->
                     <span id="proceso-constitucional" style="display: none;">
                         <label for="Tipo_Proceso_Constitucional" class="obligatorio">Tipo de Proceso Constitucional:</label>
                         <div class="custom-select">
                             <select name="proceso-constitucional" name="proceso-constitucional" required>
                                 <option value="opciones">Seleccione una opción</option>
-                                <option value="Primera">TUTELA PRIMERA INSTANCIA POR COMPETENCIA</option>
-                                <option value="Impugnacion">IMPUGNACIÓN DE TUTELA</option>
-                                <option value="Consultaincdesa">CONSULTA INCIDENTE DESACATO</option>
-                                <option value="Consultaincdesa">RECUSACIÓN E IMPEDIMENTO DE TUTELA</option>
-                                <option value="Colision">COLISIÓN EN TUTELA</option>
-                                <option value="Habeas">IMPUGNACIÓN DE HABEAS CORPUS</option>
-                                <option value="Otros">OTROS PROCESOS CONSTITUCIONALES</option>
                             </select>
                         </div>
                         <div id="otrosInput" style="display: none;">
@@ -64,53 +59,15 @@
                                     <option value="No">No</option>
                                 </select>
                             </div>
-
                             <span id="preguntas-adicionales-si-constitucional" style="display: none;">
                                 <label for="cuantasveces-constitucional" type="number">¿Cuantas veces la Corte Suprema de Justicia tuvo conocimiento?</label>
                                 <input type="number" id="cuantasveces-constitucional" name="cuantas-veces-constitucional">
                                 <label for="magistradoqueconocio-constitucional">Seleccione el Magistrado que conoció previamente:</label>
                                 <select id="magistradoqueconocio-constitucional" name="magistrado-que-conocio-constitucional">
                                         <option value="seleccionem">Seleccione una opción</option>
-                                                    <option value="Dra. Myriam Avila Roldan">Dra. Myriam Avila Roldan</option>
-                                                    <option value="Dra. Eva Marina Pulido De Barón">Dra. Eva Marina Pulido De Barón</option>
-                                                    <option value="Dra. María Del Rosario González Muñoz">Dra. María Del Rosario González Muñoz</option>
-                                                    <option value="Dra. Patricia Salazar Cuellar">Dra. Patricia Salazar Cuellar</option>
-                                                    <option value="Dr. Carlos Roberto Solorzano Garavito">Dr. Carlos Roberto Solorzano Garavito</option>
-                                                    <option value="Dr. Diego Eugenio Corredor Beltran">Dr. Diego Eugenio Corredor Beltran</option>
-                                                    <option value="Dr. Alfredo Gómez Quintero">Dr. Alfredo Gómez Quintero</option>
-                                                    <option value="Dr. Álvaro Orlando Pérez Pinzón">Dr. Álvaro Orlando Pérez Pinzón</option>
-                                                    <option value="Dr. Augusto Ibáñez Guzmán">Dr. Augusto Ibáñez Guzmán</option>
-                                                    <option value="Dr. Edgar Lombana Trujillo">Dr. Edgar Lombana Trujillo</option>
-                                                    <option value="Dr. Eugenio Fernández Carlier">Dr. Eugenio Fernández Carlier</option>
-                                                    <option value="Dr. Eyder Patiño Cabrera">Dr. Eyder Patiño Cabrera</option>
-                                                    <option value="Dr. Fabio Ospitia Garzón">Dr. Fabio Ospitia Garzón</option>
-                                                    <option value="Dr. Fernando Alberto Castro Caballero">Dr. Fernando Alberto Castro Caballero</option>
-                                                    <option value="Dr. Fernando Leon Bolaños Palacios">Dr. Fernando Leon Bolaños Palacios</option>
-                                                    <option value="Dr. Gerson Chaverra Castro">Dr. Gerson Chaverra Castro</option>
-                                                    <option value="Dr. Guillermo Dávila Muñoz">Dr. Guillermo Dávila Muñoz</option>
-                                                    <option value="Dr. Gustavo Enrique Malo Fernández">Dr. Gustavo Enrique Malo Fernández</option>
-                                                    <option value="Dr. Gustavo Gómez Velásquez">Dr. Gustavo Gómez Velásquez</option>
-                                                    <option value="Dr. Hermán Galán Castellanos">Dr. Hermán Galán Castellanos</option>
-                                                    <option value="Dr. Hugo Quintero Bernate">Dr. Hugo Quintero Bernate</option>
-                                                    <option value="Dr. Jaime Giraldo Ángel">Dr. Jaime Giraldo Ángel</option>
-                                                    <option value="Dr. Jaime Humberto Moreno Acero">Dr. Jaime Humberto Moreno Acero</option>
-                                                    <option value="Dr. Javier Zapata Ortíz">Dr. Javier Zapata Ortíz</option>
-                                                    <option value="Dr. Jorge Anibal Gómez Gallego">Dr. Jorge Anibal Gómez Gallego</option>
-                                                    <option value="Dr. Jorge Hernan Diaz Soto">Dr. Jorge Hernan Diaz Soto</option>
-                                                    <option value="Dr. Jorge Luis Quintero Milanés">Dr. Jorge Luis Quintero Milanés</option>
-                                                    <option value="Dr. José Francisco Acuña Vizcaya">Dr. José Francisco Acuña Vizcaya</option>
-                                                    <option value="Dr. José Leónidas Bustos Martínez">Dr. José Leónidas Bustos Martínez</option>
-                                                    <option value="Dr. José Luis Barceló Camacho">Dr. José Luis Barceló Camacho</option>
-                                                    <option value="Dr. Julio Enrique Socha Salamanca">Dr. Julio Enrique Socha Salamanca</option>
-                                                    <option value="Dr. Lizandro Martínez Zúñiga">Dr. Lizandro Martínez Zúñiga</option>
-                                                    <option value="Dr. Luis Antonio Hernández Barbosa">Dr. Luis Antonio Hernández Barbosa</option>
-                                                    <option value="Dr. Luis Enrique Adana Rozo">Dr. Luis Enrique Adana Rozo</option>
-                                                    <option value="Dr. Luis Guillermo Salazar Otero">Dr. Luis Guillermo Salazar Otero</option>
-                                                    <option value="Dr. Sigifredo Espinosa Pérez">Dr. Sigifredo Espinosa Pérez</option>
                                     </select>
-                                                                    </span>
-                                                                </span>
-
+                            </span>
+                     </span>
                                                                 <!-- Campos para proceso Ordinarios -->
 
                             <span id="proceso-ordinario" style="display: none;">
@@ -118,20 +75,6 @@
                                 <div class="custom-select">
                                     <select name="proceso-ordinario" name="proceso-ordinario" required>
                                         <option value="opciones">Seleccione una opción</option>
-                                        <option value="segunda">SEGUNDA INSTANCIA APELACIÓN SENTENCIA</option>
-                                        <option value="segundarev">SEGUNDA INSTANCIA ACCIÓN DE REVISIÓN</option>
-                                        <option value="segundalib">SEGUNDA INSTANCIA APELACIÓN LIBERTADES</option>
-                                        <option value="segundaotros">SEGUNDA INSTANCIA APELACIÓN OTROS ASUNTOS</option>
-                                        <option value="segundaafo">SEGUNDA INSTANCIA AFORADOS</option>
-                                        <option value="casacion">RECURSO DE CASACIÓN</option>
-                                        <option value="impugesp">IMPUGNACIÓN ESPECIAL</option>
-                                        <option value="impugespafo">IMPUGNACIÓN ESPECIAL AFORADOS</option>
-                                        <option value="defcomp">DEFINICIÓN DE COMPETENCIA</option>
-                                        <option value="colicomp">COLISIÓN DE COMPETENCIA</option>
-                                        <option value="impedrecu">IMPEDIMENTOS Y/O RECUSACIONES</option>
-                                        <option value="cambiora">CAMBIO DE RADICACIÓN</option>
-                                        <option value="queja">RECURSO DE QUEJA</option>
-                                        <option value="dicipli">DICIPLINARIOS</option>
                                     </select>
                                     <label for="Ley" class="obligatorio">Ley:</label>
                                 <div class="custom-select">
@@ -160,55 +103,18 @@
                                         <option value="No">No</option>
                                     </select>
                                 </div>
-                                
                                 <span id="preguntas-adicionales-si-ordinario" style="display: none;">
                                     <label for="cuantasveces-ordinario" type="number">¿Cuantas veces la Corte Suprema de Justicia tuvo conocimiento?</label>
                                     <input type="number" id="cuantasveces-ordinario" name="cuantas-veces-ordinario">
                                     <label for="magistradoqueconocio-ordinario">Seleccione el Magistrado que conoció previamente:</label>
                                     <select id="magistradoqueconocio-ordinario" name="magistrado-que-conocio-ordinario">
                                         <option value="seleccionem">Seleccione una opción</option>
-                                        <option value="Dra. Myriam Avila Roldan">Dra. Myriam Avila Roldan</option>
-                                        <option value="Dra. Eva Marina Pulido De Barón">Dra. Eva Marina Pulido De Barón</option>
-                                        <option value="Dra. María Del Rosario González Muñoz">Dra. María Del Rosario González Muñoz</option>
-                                        <option value="Dra. Patricia Salazar Cuellar">Dra. Patricia Salazar Cuellar</option>
-                                        <option value="Dr. Carlos Roberto Solorzano Garavito">Dr. Carlos Roberto Solorzano Garavito</option>
-                                        <option value="Dr. Diego Eugenio Corredor Beltran">Dr. Diego Eugenio Corredor Beltran</option>
-                                        <option value="Dr. Alfredo Gómez Quintero">Dr. Alfredo Gómez Quintero</option>
-                                        <option value="Dr. Álvaro Orlando Pérez Pinzón">Dr. Álvaro Orlando Pérez Pinzón</option>
-                                        <option value="Dr. Augusto Ibáñez Guzmán">Dr. Augusto Ibáñez Guzmán</option>
-                                        <option value="Dr. Edgar Lombana Trujillo">Dr. Edgar Lombana Trujillo</option>
-                                        <option value="Dr. Eugenio Fernández Carlier">Dr. Eugenio Fernández Carlier</option>
-                                        <option value="Dr. Eyder Patiño Cabrera">Dr. Eyder Patiño Cabrera</option>
-                                        <option value="Dr. Fabio Ospitia Garzón">Dr. Fabio Ospitia Garzón</option>
-                                        <option value="Dr. Fernando Alberto Castro Caballero">Dr. Fernando Alberto Castro Caballero</option>
-                                        <option value="Dr. Fernando Leon Bolaños Palacios">Dr. Fernando Leon Bolaños Palacios</option>
-                                        <option value="Dr. Gerson Chaverra Castro">Dr. Gerson Chaverra Castro</option>
-                                        <option value="Dr. Guillermo Dávila Muñoz">Dr. Guillermo Dávila Muñoz</option>
-                                        <option value="Dr. Gustavo Enrique Malo Fernández">Dr. Gustavo Enrique Malo Fernández</option>
-                                        <option value="Dr. Gustavo Gómez Velásquez">Dr. Gustavo Gómez Velásquez</option>
-                                        <option value="Dr. Hermán Galán Castellanos">Dr. Hermán Galán Castellanos</option>
-                                        <option value="Dr. Hugo Quintero Bernate">Dr. Hugo Quintero Bernate</option>
-                                        <option value="Dr. Jaime Giraldo Ángel">Dr. Jaime Giraldo Ángel</option>
-                                        <option value="Dr. Jaime Humberto Moreno Acero">Dr. Jaime Humberto Moreno Acero</option>
-                                        <option value="Dr. Javier Zapata Ortíz">Dr. Javier Zapata Ortíz</option>
-                                        <option value="Dr. Jorge Anibal Gómez Gallego">Dr. Jorge Anibal Gómez Gallego</option>
-                                        <option value="Dr. Jorge Hernan Diaz Soto">Dr. Jorge Hernan Diaz Soto</option>
-                                        <option value="Dr. Jorge Luis Quintero Milanés">Dr. Jorge Luis Quintero Milanés</option>
-                                        <option value="Dr. José Francisco Acuña Vizcaya">Dr. José Francisco Acuña Vizcaya</option>
-                                        <option value="Dr. José Leónidas Bustos Martínez">Dr. José Leónidas Bustos Martínez</option>
-                                        <option value="Dr. José Luis Barceló Camacho">Dr. José Luis Barceló Camacho</option>
-                                        <option value="Dr. Julio Enrique Socha Salamanca">Dr. Julio Enrique Socha Salamanca</option>
-                                        <option value="Dr. Lizandro Martínez Zúñiga">Dr. Lizandro Martínez Zúñiga</option>
-                                        <option value="Dr. Luis Antonio Hernández Barbosa">Dr. Luis Antonio Hernández Barbosa</option>
-                                        <option value="Dr. Luis Enrique Adana Rozo">Dr. Luis Enrique Adana Rozo</option>
-                                        <option value="Dr. Luis Guillermo Salazar Otero">Dr. Luis Guillermo Salazar Otero</option>
-                                        <option value="Dr. Sigifredo Espinosa Pérez">Dr. Sigifredo Espinosa Pérez</option>                                    
                                     </select>
-                                                        </span>
-                                                    </span>
+                                      </span>
+               </span>
                                 </section>
                             <!-- FIN PRIMERA SECCIÓN -->
-
+<!-- seccion2 -->
                             <!-- Sección Juzgados Primera y Segunda Instancia -->
                             <section id="juzgado1rainstancia" style="display: none;">
                                 <h2>Juzgado / Tribunal de conocimiento previo</h2>
@@ -333,7 +239,8 @@
                                                     <br><br>
                                                     <button type="button" onclick="agregarCamposAccionantes()">Agregar Accionante</button>
                                                 </td>
-                                                                        <!-- Segunda columna Constitucionales: Accionados -->
+<!-- finseccion2                                                                        Segunda columna Constitucionales: Accionados -->
+<!-- seccion 3 -->
                                                 <td>
                                                     <div class="text" style="display: block;">
                                                         <label for="accionados" class="obligatorio">Accionados - Vinculados</label>
@@ -355,7 +262,6 @@
                                                     </div>
                                 <button type="button" onclick="agregarCamposAccionados()">Agregar Campo</button>
                                                 </td>
-                                                       <!-- Primera columna ORDINARIOS: Procesado, etc.  -->
                         <td>
                             <h3>Procesado(s)/Indiciado(s)/Acusado(s)/Condenado(s)/Postulado(s)/Menor(es) Infractor(es)</h3>
                             <div class="custom-select" style="display: block;" id="procesadocont">
@@ -398,7 +304,6 @@
                                     </div>
                                     <button type="button" onclick="agregarCamposprocesadocont()">Agregar un nuevo campo</button>
                             </div>
-                                                                             <!--Segunda Columna Ordinarios: Victimas -->
                         <td id="victimas-partecivil" style="display: none;">
                             <div class="text" style="display: block;">
                                 <label for="nombrevict" class="obligatorio">Nombre Victima - Parte Civil</label>
@@ -448,7 +353,6 @@
 
                                 <button type="button" onclick="agregarCampo('')"></button>
                         </td>
-                                            <!-- Tercera columna ordinarios: Fiscalía/acusadorprivado/ procuraduria -->
                         <td id="fiscalia-procuraduria-container" style="display: none;">
                             <div class="text" style="display: block;">
 
@@ -474,9 +378,7 @@
                 <button id="mostrar-infoproceso" type="button" style="position: absolute; right: 100px;">Información dígital</button><br><br>
 
             </section>
-                                                <!-- FIN SEGUNDA SECCIÓN-->
-                                               <!-- INCIO TERCERA SECCIÓN -->
-
+                                                
             <section id="seccionproceso" class="seccionproceso" style="display: none;"> 
                 <h2>Información dígital del proceso</h2>
                     <label for="carpetas" class="obligatorio">Indique el número de carpetas</label>
@@ -490,9 +392,6 @@
                         <p>Anexe el hipervínculo para aceder al proceso</p>
                     <input type="url" required>
             </section>
-                                            <!-- FIN TERCERA SECCIÓN -->
-
-
                     <div style="display: flex; justify-content: center;">
                         <button type="submit" id="enviarButton">Enviar Información</button>
                     </div>        

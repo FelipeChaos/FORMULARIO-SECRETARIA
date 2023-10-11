@@ -501,3 +501,62 @@ fetch('data.json')
             .catch(error => {
                 console.error('Error al cargar datos JSON:', error);
             });
+
+// Función para cargar los datos del archivo JSON
+        function cargarDatos() {
+            fetch('data.json') // Reemplaza 'data.json' con la ruta correcta a tu archivo JSON
+                .then(response => response.json())
+                .then(data => {
+                    const magistradoConstitucionalSelect = document.querySelector('select[name="magistrado-que-conocio-constitucional"]');
+                    const procesoOrdinarioSelect = document.querySelector('select[name="proceso-ordinario"]');
+                    const leySelect = document.querySelector('select[name="ley"]');
+                    const magistradoOrdinarioSelect = document.querySelector('select[name="magistrado-que-conocio-ordinario"]');
+                    
+                    // Llena los campos de magistrados constitucionales
+                    data['magistrados-constitucional'].forEach(option => {
+                        const opt = document.createElement('option');
+                        opt.value = option;
+                        opt.text = option;
+                        magistradoConstitucionalSelect.appendChild(opt);
+                    });
+
+                    // Llena los campos de tipo de proceso ordinario
+                    data['proceso-ordinario'].forEach(option => {
+                        const opt = document.createElement('option');
+                        opt.value = option;
+                        opt.text = option;
+                        procesoOrdinarioSelect.appendChild(opt);
+                    });
+
+                    // Llena los campos de ley
+                    data['ley'].forEach(option => {
+                        const opt = document.createElement('option');
+                        opt.value = option;
+                        opt.text = option;
+                        leySelect.appendChild(opt);
+                    });
+
+                    // Llena los campos de magistrados ordinarios
+                    data['magistrados-ordinario'].forEach(option => {
+                        const opt = document.createElement('option');
+                        opt.value = option;
+                        opt.text = option;
+                        magistradoOrdinarioSelect.appendChild(opt);
+                    });
+                })
+                .catch(error => console.error('Error al cargar datos JSON', error));
+        }
+
+// Llama a la función para cargar los datos cuando se cargue la página
+window.addEventListener('load', cargarDatos);
+
+// Función para mostrar u ocultar el campo de entrada de tipo "input" según la selección
+const procesoConstitucionalSelect = document.querySelector('#proceso-constitucional');
+const otrosInput = document.querySelector('#otrosInput');
+       procesoConstitucionalSelect.addEventListener('change', function() {
+            if (this.value === 'otros') {
+                otrosInput.style.display = 'block';
+            } else {
+                otrosInput.style.display = 'none';
+            }
+        });
