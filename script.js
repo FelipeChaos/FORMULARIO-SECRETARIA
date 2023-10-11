@@ -485,3 +485,19 @@ document.getElementById("proceso").addEventListener("change", mostrarColumnas);
 
 // Llamar a la función al cargar la página para reflejar la selección inicial
 mostrarColumnas();
+
+fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                // Llena la lista desplegable de proceso constitucional
+                const procesoConstSelect = document.querySelector('select[name="proceso-constitucional"]');
+                data['proceso-constitucional'].forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    procesoConstSelect.appendChild(optionElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar datos JSON:', error);
+            });
