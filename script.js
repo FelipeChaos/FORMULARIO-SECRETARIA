@@ -8,9 +8,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const fechaInput = document.getElementById("fecha");
     const seccionSujetosProcesales = document.getElementById("sujetos-procesales");
 
+    // Desactiva el autocompletado para cada campo
+    campos.forEach(function(campo) {
+        campo.setAttribute('autocomplete', 'off');
+    });
+
 
     // Inicializa Flatpickr
     flatpickr("#fecha", {
+        locale: "es",
         dateFormat: "d/m/Y", // Formato de fecha
         minDate: "01-01-1900",    // Fecha mínima 
         maxDate: "12-12-3050", // Fecha máxima (hoy)
@@ -106,27 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Selección otros procesos en primera instancia
-document.addEventListener("DOMContentLoaded", function () {
-    const procesoConstitucionalSelect = document.querySelector('select[name="proceso-constitucional"]');
-    const otrosInput = document.getElementById("otrosInput");
-
-    function ocultarProcesosConstitucionales() {
-        otrosInput.style.display = "none";
-    }
-
-    procesoConstitucionalSelect.addEventListener("change", function () {
-        ocultarProcesosConstitucionales();
-
-        // Obtener el valor seleccionado en el select de proceso constitucional
-        const selectedProcesoConstitucional = procesoConstitucionalSelect.value;
-
-        // Mostrar el campo de entrada de texto cuando se selecciona "Otros"
-        if (selectedProcesoConstitucional === "Otros") {
-            otrosInput.style.display = "block";
-        }
-    });
-});
 
 //funcionalidades para agregar más campos en secciones 
 
@@ -359,7 +344,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const juzgado2daInstancia = document.getElementById("juzgado2da");
 
     // Palabras clave en minúsculas y exactas
-    const palabrasClave = ["segunda", "impugesp", "casacion"];
+    const palabrasClave = ["segunda", "impugnación especial", "casación"];
 
     // Función para mostrar u ocultar la sección de juzgado de primera instancia
     function toggleJuzgado1ra() {
@@ -430,14 +415,9 @@ botonMostrarinfoproceso.addEventListener("click", function () {
 });
 
 
-
 //quitar el autocomplete a todos los campos
-var campos = document.querySelectorAll('input[type="text"], input[type="number"], input[type="email"]');
+var campos = document.querySelectorAll('input[type="text"], input[type="number"], input[type="email"], input[type="date"]');
 
-// Desactiva el autocompletado para cada campo
-campos.forEach(function(campo) {
-    campo.setAttribute('autocomplete', 'off');
-});
 
 //funcionalidad del botón enviar 
 function recargarPagina() {
@@ -475,8 +455,8 @@ function mostrarColumnas() {
         columna5.style.display = "table-cell";
 
         // Mostrar la sección de juzgados
-        document.getElementById("juzgado1rainstancia").style.display = "block";
-        document.getElementById("juzgado2da").style.display = "block";
+        document.getElementById("juzgado1rainstancia").style.display = "none";
+        document.getElementById("juzgado2da").style.display = "none";
     }
 }
 
@@ -486,77 +466,98 @@ document.getElementById("proceso").addEventListener("change", mostrarColumnas);
 // Llamar a la función al cargar la página para reflejar la selección inicial
 mostrarColumnas();
 
-fetch('data.json')
-            .then(response => response.json())
+// Selección otros procesos en primera instancia
+document.addEventListener("DOMContentLoaded", function () {
+    const procesoConstitucionalSelect = document.querySelector('select[name="proceso-constitucional"]');
+    const otrosInput = document.getElementById("otrosInput");
+
+    function ocultarProcesosConstitucionales() {
+        otrosInput.style.display = "block";
+    }
+
+    procesoConstitucionalSelect.addEventListener("change", function () {
+        ocultarProcesosConstitucionales();
+
+        // Obtener el valor seleccionado en el select de proceso constitucional
+        const selectedProcesoConstitucional = procesoConstitucionalSelect.value;
+
+        // Mostrar el campo de entrada de texto cuando se selecciona "Otros"
+        if (selectedProcesoConstitucional === "OTROS PROCESOS CONSTITUCIONALES") {
+            otrosInput.style.display = "block";
+        } else {
+            otrosInput.style.display = "none"
+        }
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    cargarDatos();
+
+    const procesoConstSelect = document.querySelector('select[name="proceso-constitucional"]');
+    const procesoOrdinarioSelect = document.querySelector('select[name="proceso-ordinario"]');
+    const leySelect = document.querySelector('select[name="ley"]');
+    const magistradoSelect = document.querySelector('select[name="magistrado"]');
+    const selectElement = document.querySelector('select[name="Tipo_Proceso_Constitucional"]');
+
+    function cargarDatos() {
+        fetch('data.json') 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el archivo JSON');
+                }
+                return response.json();
+            })
             .then(data => {
                 // Llena la lista desplegable de proceso constitucional
-                const procesoConstSelect = document.querySelector('select[name="proceso-constitucional"]');
                 data['proceso-constitucional'].forEach(option => {
                     const optionElement = document.createElement('option');
                     optionElement.value = option;
                     optionElement.textContent = option;
                     procesoConstSelect.appendChild(optionElement);
                 });
+
+                // Llena los campos de tipo de proceso ordinario
+                data['proceso-ordinario'].forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    procesoOrdinarioSelect.appendChild(optionElement);
+                });
+
+                // Llena los campos de ley
+                data['ley'].forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    leySelect.appendChild(optionElement);
+                });
+
+                // Llena los campos de magistrados
+                data['magistrados-constitucional'].forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    magistradoSelect.appendChild(optionElement);
+                });
+
+                data['magistrados-ordinario'].forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    magistradoSelect.appendChild(optionElement); // Aquí debe ser magistradoOrdinarioSelect
+                });
+        })
+    };},)
+
+    // Función para cargar los datos del archivo JSON
+    function cargarDatos() {
+        fetch('data.json') 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el archivo JSON');
+                }
+                return response.json();
             })
-            .catch(error => {
-                console.error('Error al cargar datos JSON:', error);
-            });
-
-// Función para cargar los datos del archivo JSON
-        function cargarDatos() {
-            fetch('data.json') // Reemplaza 'data.json' con la ruta correcta a tu archivo JSON
-                .then(response => response.json())
-                .then(data => {
-                    const magistradoConstitucionalSelect = document.querySelector('select[name="magistrado-que-conocio-constitucional"]');
-                    const procesoOrdinarioSelect = document.querySelector('select[name="proceso-ordinario"]');
-                    const leySelect = document.querySelector('select[name="ley"]');
-                    const magistradoOrdinarioSelect = document.querySelector('select[name="magistrado-que-conocio-ordinario"]');
-                    
-                    // Llena los campos de magistrados constitucionales
-                    data['magistrados-constitucional'].forEach(option => {
-                        const opt = document.createElement('option');
-                        opt.value = option;
-                        opt.text = option;
-                        magistradoConstitucionalSelect.appendChild(opt);
-                    });
-
-                    // Llena los campos de tipo de proceso ordinario
-                    data['proceso-ordinario'].forEach(option => {
-                        const opt = document.createElement('option');
-                        opt.value = option;
-                        opt.text = option;
-                        procesoOrdinarioSelect.appendChild(opt);
-                    });
-
-                    // Llena los campos de ley
-                    data['ley'].forEach(option => {
-                        const opt = document.createElement('option');
-                        opt.value = option;
-                        opt.text = option;
-                        leySelect.appendChild(opt);
-                    });
-
-                    // Llena los campos de magistrados ordinarios
-                    data['magistrados-ordinario'].forEach(option => {
-                        const opt = document.createElement('option');
-                        opt.value = option;
-                        opt.text = option;
-                        magistradoOrdinarioSelect.appendChild(opt);
-                    });
-                })
-                .catch(error => console.error('Error al cargar datos JSON', error));
-        }
-
-// Llama a la función para cargar los datos cuando se cargue la página
-window.addEventListener('load', cargarDatos);
-
-// Función para mostrar u ocultar el campo de entrada de tipo "input" según la selección
-const procesoConstitucionalSelect = document.querySelector('#proceso-constitucional');
-const otrosInput = document.querySelector('#otrosInput');
-       procesoConstitucionalSelect.addEventListener('change', function() {
-            if (this.value === 'otros') {
-                otrosInput.style.display = 'block';
-            } else {
-                otrosInput.style.display = 'none';
-            }
-        });
+            .then(data => {}
+)}

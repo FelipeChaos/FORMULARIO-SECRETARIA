@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <title>Envío de Expedientes Digitales</title>
 </head>
-                                                                                                <!-- seccion 1 -->
+   <!-- seccion 1 -->
 <body> 
     <header>
         <h1>ENVÍO DE EXPEDIENTES DIGITALES A LA <br> SECRETARÍA DE CASACIÓN PENAL CORTE SUPREMA DE JUSTICIA</h1>
@@ -36,7 +36,7 @@
                     <span id="proceso-constitucional" style="display: none;">
                         <label for="Tipo_Proceso_Constitucional" class="obligatorio">Tipo de Proceso Constitucional:</label>
                         <div class="custom-select">
-                            <select name="proceso-constitucional" name="proceso-constitucional" required>
+                            <select id="Proceso_Constitucional" name="proceso-constitucional" required>
                                 <option value="opciones">Seleccione una opción</option>
                             </select>
                         </div>
@@ -60,33 +60,33 @@
                                 </select>
                             </div>
                             <span id="preguntas-adicionales-si-constitucional" style="display: none;">
-                                <label for="cuantasveces-constitucional" type="number">¿Cuantas veces la Corte Suprema de Justicia tuvo conocimiento?</label>
+                                <label for="cuantasveces-constitucional">¿Cuantas veces la Corte Suprema de Justicia tuvo conocimiento?</label>
                                 <input type="number" id="cuantasveces-constitucional" name="cuantas-veces-constitucional">
-                                <label for="magistradoqueconocio-constitucional">Seleccione el Magistrado que conoció previamente:</label>
-                                <select id="magistradoqueconocio-constitucional" name="magistrado-que-conocio-constitucional">
-                                        <option value="seleccionem">Seleccione una opción</option>
-                                    </select>
+                                <label for="magistrado-que-conocio-constitucional">Seleccione el Magistrado que conoció previamente:</label>
+                                <select id="magistrado-constitucional" name="magistrado">
+                                    <option value="seleccionem">Seleccione una opción</option>
+                                </select>
                             </span>
-                     </span>
+                </span>
                                                                 <!-- Campos para proceso Ordinarios -->
 
                             <span id="proceso-ordinario" style="display: none;">
                                 <label for="Tipo_Proceso_Ordinario" class="obligatorio">Tipo de Proceso Ordinario:</label>
                                 <div class="custom-select">
-                                    <select name="proceso-ordinario" name="proceso-ordinario" required>
+                                    <select id="Proceso-Ordinario" name="proceso-ordinario" required>
                                         <option value="opciones">Seleccione una opción</option>
                                     </select>
                                     <label for="Ley" class="obligatorio">Ley:</label>
                                 <div class="custom-select">
-                                    <select name="proceso-ordinario" name="proceso-ordinario" required>
+                                    <select name="ley" required>
                                         <option value="opcionesley">Seleccione una opción</option>
-                                        <option value="906">LEY 906 DE 2004</option>
+                                        <!-- <option value="906">LEY 906 DE 2004</option>
                                         <option value="600">LEY 600 DE 2000</option>
                                         <option value="1098">1098 INFANCIA Y ADOLESCENCIA</option>
                                         <option value="1826">1826 PROCEDIMIENTO ABREVIADO</option>
                                         <option value="522">522 JUSTICIA PENAL MILITAR</option>
                                         <option value="1407">1407 JUSTICIA PENAL MILITAR</option>
-                                        <option value="975">975 JUSTICIA Y PAZ</option>
+                                        <option value="975">975 JUSTICIA Y PAZ</option> -->
                                         </select>
                                 </div>
                                 <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conoció del proceso</p>
@@ -104,14 +104,13 @@
                                     </select>
                                 </div>
                                 <span id="preguntas-adicionales-si-ordinario" style="display: none;">
-                                    <label for="cuantasveces-ordinario" type="number">¿Cuantas veces la Corte Suprema de Justicia tuvo conocimiento?</label>
+                                    <label for="cuantasveces-ordinario">¿Cuantas veces la Corte Suprema de Justicia tuvo conocimiento?</label>
                                     <input type="number" id="cuantasveces-ordinario" name="cuantas-veces-ordinario">
                                     <label for="magistradoqueconocio-ordinario">Seleccione el Magistrado que conoció previamente:</label>
-                                    <select id="magistradoqueconocio-ordinario" name="magistrado-que-conocio-ordinario">
+                                    <select id="magistrados-ordinario" name="magistrado">
                                         <option value="seleccionem">Seleccione una opción</option>
                                     </select>
-                                      </span>
-               </span>
+                                </span>               </span>
                                 </section>
                             <!-- FIN PRIMERA SECCIÓN -->
 <!-- seccion2 -->
