@@ -551,3 +551,141 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 });
+
+//FUNCION AGREGAR APODERADO EN ORDINARIOS COLUMN 1
+function toggleCamposApoderado(button) {
+    var apoderadoDiv = document.getElementById("apoderadordina");
+    if (apoderadoDiv.style.display === "none") {
+        apoderadoDiv.style.display = "block";
+        button.innerText = "Ocultar Apoderado";
+    } else {
+        apoderadoDiv.style.display = "none";
+        button.innerText = "Agregar Apoderado";
+    }
+}
+
+function toggleCamposDefensor(boton, divId) {
+    var defensorDiv = document.getElementById(divId);
+
+    if (defensorDiv.style.display === "none" || defensorDiv.style.display === "") {
+        defensorDiv.style.display = "block";
+        boton.innerText = "Ocultar Representante de Víctimas";
+    } else {
+        defensorDiv.style.display = "none";
+        boton.innerText = "Agregar Representante de Víctimas";
+    }
+}
+
+// Función para agregar un nuevo campo procesado
+function agregarCampoProcesado() {
+    var contenedor = document.getElementById("procesadocont");
+
+    // Crea un nuevo div para el campo procesado
+    var nuevoCampo = document.createElement("div");
+    nuevoCampo.className = "campo-procesado";
+
+    // Agrega el HTML del campo procesado
+    nuevoCampo.innerHTML = `
+        <hr>
+        <h3>Procesado(s)/Indiciado(s)/Acusado(s)/Condenado(s)/Postulado(s)/Menor(es) Infractor(es)</h3>
+        <div class="custom-select" style="display: block;">
+            <label for="nombreproc" class="obligatorio" required>Nombre</label>
+            <p>Indique el nombre completo del Procesado(s)/Indiciado(s)/Acusado(s)/Condenado(s)/Postulado(s), en caso de ser menor de edad digite solo las iniciales</p>
+            <input type="text" class="obligatorio" required>
+            <label for="tipodocordi" class="obligatorio">Tipo de documento</label>
+            <select name="tipodoc" id="tipodocordi">
+                <option value="seleciondoc">Seleccione un tipo de documento</option>
+                <option value="cedula">Cédula de Ciudadanía</option>
+                <option value="ti">Tarjeta de Identidad</option>
+                <option value="cedulaext">Cédula de Extranjería</option>
+                <option value="pasaporte">Pasaporte</option>
+            </select>
+            <label for="numerodoc" class="obligatorio">Número de documento</label>
+            <p>Debe poner el número de Identificación personal</p>
+            <input type="number" min="0" required>
+            <label for="direccionresi" class="obligatorio">Dirección residencia</label>
+            <input type="text" name="direccionresi1" required>
+            <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
+            <input type="number" minlength="10" maxlength="10" required>
+            <label for="correocons1" class="obligatorio">Correo Electrónico</label>
+            <input type="email" name="correocons1" required>
+            <button type="button" class="eliminarCampoButton">Eliminar Campo</button>
+        </div>
+        <hr>
+    `;
+
+    // Agrega el nuevo campo al contenedor
+    contenedor.appendChild(nuevoCampo);
+
+    // Agrega un manejador de eventos para el botón de eliminación
+    var eliminarCampoButton = nuevoCampo.querySelector(".eliminarCampoButton");
+    eliminarCampoButton.addEventListener("click", function () {
+        contenedor.removeChild(nuevoCampo);
+    });
+}
+
+//Agrega victimas
+function agregarCampo(nombreCampo) {
+    var contenedor = document.getElementById(nombreCampo);
+
+    // Crea un nuevo div para el campo
+    var nuevoCampo = document.createElement("div");
+    nuevoCampo.className = "campo-victima";
+
+
+    // Agrega el HTML del campo de Víctima
+    nuevoCampo.innerHTML = `
+    <hr>
+    <label for="nombrevic" class="obligatorio">Nombre Víctima - Parte Civil</label>
+    <input type="text" id="nombrevic" class="obligatorio" required>
+    <label for="tipodocvic" class="obligatorio">Tipo de documento</label>
+    <select name="tipodocv" id="tipodocvic">
+        <option value="seleciondoc">Seleccione un tipo de documento</option>
+        <option value="cedula">Cédula de Ciudadanía</option>
+        <option value="ti">Tarjeta de Identidad</option>
+        <option value="cedulaext">Cédula de extranjería</option>
+        <option value="pasaporte">Pasaporte</option>
+    </select>
+    <label for="numero_vict" class="obligatorio">Número documento identidad</label>
+    <input type="number" id="numerovic" name="numerodocvict" required>
+
+    <label for="correo1" class="obligatorio">Correo:</label>
+    <p>Indique un correo electrónico para notificaciones</p>
+    <input type="email" id="correovict" name="correovicti" class="obligatorio" required>
+    <label for="telvicti" class="obligatorio">Número de teléfono:</label>
+    <p>Número de teléfono donde pueda ser contactado fácilmente</p>
+    <input type="number" id="telvicti" minlength="10" maxlength="10" class="obligatorio" required>
+    <label for="dirvict" class="obligatorio">Dirección:</label>
+    <p>Dirección física para notificaciones.</p>
+    <input type="text" id="dirvict" class="obligatorio" required>
+</div>
+<button type="button" onclick="toggleCamposDefensor(this, 'defensor')" class="boton-accion">Agregar Representante de Víctimas</button>
+        <button type="button" onclick="eliminarCampo(this)">Eliminar Víctima</button>
+        <hr>
+    `;
+
+    // Agrega el nuevo campo al contenedor
+    contenedor.appendChild(nuevoCampo);
+}
+
+// Función para eliminar un campo de Víctima
+function eliminarCampo(botonEliminar) {
+    var campoVictima = botonEliminar.parentElement;
+    campoVictima.parentElement.removeChild(campoVictima);
+}
+
+// Agregar un manejador de eventos al botón "Agregar otro sujeto procesal"
+var agregarCampoButton = document.getElementById("agregarCampoButton");
+agregarCampoButton.addEventListener("click", agregarCampoProcesado);
+
+// Agregar un manejador de eventos al botón "Agregar Víctima(s)"
+var agregarVictimasButton = document.getElementById("agregarCampoVictimas");
+agregarVictimasButton.addEventListener("click", function() {
+    agregarCampo("victimas-partecivil");
+});
+
+// Función para eliminar un campo de víctima o representante de víctimas
+function eliminarCampo(botonEliminar) {
+    var campo = botonEliminar.parentElement;
+    campo.parentElement.removeChild(campo);
+}
