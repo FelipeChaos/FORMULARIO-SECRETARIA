@@ -491,17 +491,19 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// Listados de magistrados
+
 document.addEventListener("DOMContentLoaded", function () {
     cargarDatos();
 
-    const procesoConstSelect = document.querySelector('select[name="proceso-constitucional"]');
-    const procesoOrdinarioSelect = document.querySelector('select[name="proceso-ordinario"]');
-    const leySelect = document.querySelector('select[name="ley"]');
-    const magistradoSelect = document.querySelector('select[name="magistrado"]');
-    const selectElement = document.querySelector('select[name="Tipo_Proceso_Constitucional"]');
-
     function cargarDatos() {
-        fetch('data.json') 
+        const procesoConstSelect = document.querySelector('select[name="proceso-constitucional"]');
+        const procesoOrdinarioSelect = document.querySelector('select[name="proceso-ordinario"]');
+        const leySelect = document.querySelector('select[name="ley"]');
+        const magistradoConstitucionalSelect = document.querySelector('select[name="magistrado-que-conocio-constitucional"]');
+        const magistradoOrdinarioSelect = document.querySelector('select[name="magistradoqueconocio-ordinario"]');
+
+        fetch('data.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('No se pudo cargar el archivo JSON');
@@ -509,7 +511,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(data => {
-                // Llena la lista desplegable de proceso constitucional
                 data['proceso-constitucional'].forEach(option => {
                     const optionElement = document.createElement('option');
                     optionElement.value = option;
@@ -517,7 +518,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     procesoConstSelect.appendChild(optionElement);
                 });
 
-                // Llena los campos de tipo de proceso ordinario
                 data['proceso-ordinario'].forEach(option => {
                     const optionElement = document.createElement('option');
                     optionElement.value = option;
@@ -525,7 +525,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     procesoOrdinarioSelect.appendChild(optionElement);
                 });
 
-                // Llena los campos de ley
                 data['ley'].forEach(option => {
                     const optionElement = document.createElement('option');
                     optionElement.value = option;
@@ -533,31 +532,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     leySelect.appendChild(optionElement);
                 });
 
-                // Llena los campos de magistrados
                 data['magistrados-constitucional'].forEach(option => {
                     const optionElement = document.createElement('option');
                     optionElement.value = option;
                     optionElement.textContent = option;
-                    magistradoSelect.appendChild(optionElement);
+                    magistradoConstitucionalSelect.appendChild(optionElement);
                 });
 
                 data['magistrados-ordinario'].forEach(option => {
                     const optionElement = document.createElement('option');
                     optionElement.value = option;
                     optionElement.textContent = option;
-                    magistradoSelect.appendChild(optionElement); // Aquí debe ser magistradoOrdinarioSelect
+                    magistradoOrdinarioSelect.appendChild(optionElement);
                 });
-        })
-    };},)
-
-    // Función para cargar los datos del archivo JSON
-    function cargarDatos() {
-        fetch('data.json') 
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('No se pudo cargar el archivo JSON');
-                }
-                return response.json();
             })
-            .then(data => {}
-)}
+            .catch(error => {
+                console.error(error);
+            });
+    }
+});
