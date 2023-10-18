@@ -181,3 +181,40 @@ h2 {
 .plus-button:hover {
     background-color: #0056b3;
 }
+
+/* Estilos para el footer */
+footer {
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.7) 26.33%, rgba(255,215,0,0.7) 30.66%, rgba(0, 51, 160, 0.7) 37.33%, rgba(0, 51, 160, 0.7) 36.66%, rgba(206, 17, 38, 0.7) 95%), url('Logo_Sala_Penal-removebg-preview.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 10px -10px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+
+.footer-content {
+    display: flex;
+    align-items: center;
+}
+
+.footer-content img {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.glass-overlay {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    flex: 1;
+}
+
+.glass-overlay p {
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+}
