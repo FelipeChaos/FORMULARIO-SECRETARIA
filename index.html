@@ -7,17 +7,39 @@
     <link rel="icon" href="escudofav.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
     <title>Envío de Expedientes Digitales</title>
 </head>
    <!-- seccion 1 -->
 <body> 
     <header>
-        <h1>ENVÍO DE EXPEDIENTES DIGITALES A LA <br> SECRETARÍA DE CASACIÓN PENAL CORTE SUPREMA DE JUSTICIA</h1>
+        <h1>ENVÍO DE EXPEDIENTES DIGITALES A LA <br> Sala DE CASACIÓN PENAL CORTE SUPREMA DE JUSTICIA</h1><br> <p style="color:black;"><strong>* Campos obligatorios.</strong></p>
     </header>
     <form id="formulario" action="enviar.py" method="post" autocomplete="off">
+        <section id="seccionprocedencia">
+            <h2>Información procedencia del proceso</h2>
+            <div class="column-container">
+                <div class="column">
+                    <label for="fechaenvio">Fecha de envío</label>
+                    <div id="current_date"></div>
+                </div>
+                <div class="column">
+                    <label for="oficio" class="obligatorio">Número de oficio</label>
+                    <p>Indique el número de oficio que corresponde a la remisión del proceso</p>
+                    <input type="text" required style="width: 150px;">
+                </div>
+            </div>
+            <div class="column-container">
+                <div class="column">
+                    <label for="despacho1" class="obligatorio">Despacho judicial</label>
+                    <p>Digite el despacho judicial que remite el proceso</p>
+                    <input type="text" required>
+                </div>
+            </div>
+        </section>
+        
         <section id="seccion-1">
             <h2>Información del proceso</h2>
-            <p><strong>* Campos obligatorios.</strong></p>
             <div id="cui-container">
                 <label for="CUI" class="obligatorio">Código Único de Identificación (CUI)</label>
                 <p>Acuerdo 201 de 1997 de la Sala Administrativa del Consejo Superior de la Judicatura modificado por el Acuerdo 1412 de 2002.</p>
@@ -45,12 +67,17 @@
                             <input type="text" id="otrosProcesos" name="otrosProcesos" required>
                         </div>
 
-                        <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conoció de la acción Constitucional</p>
+                        <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que concen de la acción Constitucional</p>
                         <input type="text" id="magistradocsj" class="obligatorio" required>
                         <label for="fechaauto" class="obligatorio">Fecha Auto:</label>
                         <input type="date" id="fecha" name="fecha" required>
                         <label for="motivo" class="obligatorio">Motivo de remisión</label>
                         <input type="text" id="magistradoremi" class="obligatorio" required>
+                        <label for="delitos" class="obligatorio">Delitos Investigados</label>
+                        <div id="inputContainer">
+                        <input type="text" id="textInput" required>
+                        <button type="button" class="plus-buttonc" onclick="addInput(this)"><strong>+</strong></button>
+                        </div>
                         <label for="conocimiento-constitucional" class="obligatorio">¿La Sala de Casación Penal ya tuvo conocimiento de este proceso?</label>
                             <div class="custom-select">
                                 <select name="opciones-constitucional" id="lista-constitucional" required>
@@ -66,12 +93,14 @@
                                 <select id="magistrado-constitucional" name="magistrado-que-conocio-constitucional">
                                     <option value="seleccionem">Seleccione una opción</option>
                                 </select>
+
                             </span>
                 </span>
                                                                 <!-- Campos para proceso Ordinarios -->
 
                             <span id="proceso-ordinario" style="display: none;">
                                 <label for="Tipo_Proceso_Ordinario" class="obligatorio">Tipo de Proceso Ordinario:</label>
+                                <p>Indique acá el motivo de la remisión a la Sala de Casación Penal</p>
                                 <div class="custom-select">
                                     <select id="Proceso-Ordinario" name="proceso-ordinario" required>
                                         <option value="opciones">Seleccione una opción</option>
@@ -82,12 +111,17 @@
                                         <option value="opcionesley">Seleccione una opción</option>
                                         </select>
                                 </div>
-                                <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conoció del proceso</p>
+                                <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conocen del proceso</p>
                                 <input type="text" id="magistradocsj" class="obligatorio" required>
                                 <label for="fechaauto" class="obligatorio">Fecha Auto:</label>
                                 <input type="date" id="fecha" name="fecha" required>
                                 <label for="motivo" class="obligatorio">Motivo de remisión</label>
                                 <input type="text" id="magistradoremi" class="obligatorio" required>
+                                <label for="delitos" class="obligatorio">Delitos Investigados</label>
+                                <div id="inputContainer">
+                                <input type="text" id="textInput" required>
+                                <button type="button" class="plus-buttono" onclick="addInput(this)"><strong>+</strong></button>
+                                </div>
                                 <label for="conocimiento-ordinario" class="obligatorio">¿La Sala de Casación Penal ya tuvo conocimiento de este proceso?</label>
                                 <div class="custom-select">
                                     <select name="opciones-ordinario" id="lista-ordinario" required>
@@ -121,14 +155,14 @@
                                                     <label for="correojuz1ra" class="obligatorio">Correo:</label>
                                                     <p>Indique un correo electrónico para notificaciones</p>
                                                     <input type="email" id="correojuz1rains" class="obligatorio" required>
-                                                    <label for="teljuz1ra" class="obligatorio">Número de teléfono:</label>
+                                                    <label for="teljuz1ra">Número de teléfono:</label>
                                                     <p>Número de teléfono donde pueda ser contactado fácilmente</p>
-                                                    <input type="number" minlength="10" maxlength="10" id="teljuz1ra" class="obligatorio" required>
-                                                    <label for="dirjuz1ra" class="obligatorio">Dirección:</label>
+                                                    <input type="number" minlength="10" maxlength="10" id="teljuz1ra" >
+                                                    <label for="dirjuz1ra"">Dirección:</label>
                                                     <p>Dirección física para notificaciones.</p>
-                                                    <input type="text" id="dirjuz1ra" class="obligatorio" required> <br>
-                                                    <label for="sentencia1inst">Sentencia de Primera Instancia</label>
-                                                    <input type="date" id="sentencia1" name="sentencia1" class="obligatorio" required>
+                                                    <input type="text" id="dirjuz1ra"> <br>
+                                                    <label for="sentencia1inst" class="obligatorio" >Sentencia de Primera Instancia</label>
+                                                    <input type="date" id="sentencia1" name="sentencia1" required>
                                                 </div>
                                             </td>
                                             
@@ -139,14 +173,14 @@
                                                     <label for="correojuz2da" class="obligatorio">Correo:</label>
                                                     <p>Indique un correo electrónico para notificaciones</p>
                                                     <input type="email" id="correojuz2dains" class="obligatorio" required>
-                                                    <label for="teljuz2da" class="obligatorio">Número de teléfono:</label>
+                                                    <label for="teljuz2da" >Número de teléfono:</label>
                                                     <p>Número de teléfono donde pueda ser contactado fácilmente</p>
-                                                    <input type="number" id="teljuz2da" minlength="10" maxlength="10" class="obligatorio" required>
-                                                    <label for="dirjuz2da" class="obligatorio">Dirección:</label>
+                                                    <input type="number" id="teljuz2da" minlength="10" maxlength="10" >
+                                                    <label for="dirjuz2da">Dirección:</label>
                                                     <p>Dirección física para notificaciones.</p>
-                                                    <input type="text" id="dirjuz2da" class="obligatorio" required> <br>
-                                                    <label for="sentencia2inst">Sentencia de Segunda Instancia</label>
-                                                    <input type="date" class="obligatorio" required>
+                                                    <input type="text" id="dirjuz2da"> <br>
+                                                    <label for="sentencia2inst" class="obligatorio" >Sentencia de Segunda Instancia</label>
+                                                    <input type="date" required>
                                                 </div>
                                             </td>
                                         </tr>
@@ -158,12 +192,12 @@
                                 <button id="juz2dainstan" type="button" onclick="toggleJuzgado2da()">Agregar Juzgado 2da Instancia</button>
                             </section>
                                                               
-                        <button id="mostrar-sujetos" type="button">Sujetos Procesales</button><br><br>
+                        <button id="mostrar-sujetos" type="button">Sujetos Procesales / <br> Partes Intervinientes</button><br><br>
                         
                             <!-- INCIO SECCIÓN Sujetos Procesales -->
 
                 <section id="sujetos-procesales" style="display: none;">
-                <h2>Sujetos procesales</h2>
+                <h2>Sujetos Procesales / Partes Intervinientes</h2>
                 <table class="column-table">
                     <tr>
                                               <!-- Primera columna Constitucionales: Accionantes -->

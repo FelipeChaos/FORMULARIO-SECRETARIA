@@ -29,6 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Fecha al inicio del formulario
+moment.locale('es'); 
+
+const formattedDate = moment().format('LL'); 
+document.getElementById("current_date").innerHTML = formattedDate;
+        
 //quitar el autocomplete a todos los campos
 var campos = document.querySelectorAll('input[type="text"], input[type="number"], input[type="email"], input[type="date"]');
 
@@ -126,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const juzgado2daInstancia = document.getElementById("juzgado2da");
 
     // Palabras clave en minúsculas y exactas
-    const palabrasClave = ["segunda", "impugnación especial", "casación"];
+    const palabrasClave = ["apelación", "revisión", "impugnación especial", "casación"];
 
     // Función para mostrar u ocultar la sección de juzgado de primera instancia
     function toggleJuzgado1ra() {
@@ -195,12 +201,6 @@ botonMostrarinfoproceso.addEventListener("click", function () {
         tituloseccionproceso.style.display = "none"; // Ocultar el título
     }
 });
-
-//funcionalidad del botón enviar 
-function recargarPagina() {
-    location.reload();
-}
-
 
 // Función para mostrar u ocultar elementos según la selección en el campo "Tipo de Proceso"
 function mostrarColumnas() {
@@ -762,3 +762,39 @@ document.addEventListener("click", function (event) {
         eliminarCampo(event.target);
     }
 });
+
+function addInput(clickedButton, processType) {
+    var container = document.getElementById("inputContainer");
+
+    // Crear un nuevo elemento de entrada (input)
+    var newInput = document.createElement("input");
+    newInput.type = "text";
+    newInput.className = "added-input";
+
+    // Crear un botón de borrar ("-")
+    var deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "-";
+    deleteButton.className = "delete-button";
+
+    // Agregar un manejador de eventos al botón de borrar
+    deleteButton.addEventListener("click", function () {
+        container.removeChild(newInput);
+        container.removeChild(deleteButton);
+    });
+
+    // Agregar el nuevo elemento de entrada y el botón de borrar al contenedor
+    container.appendChild(newInput);
+    container.appendChild(deleteButton);
+
+    // Desactivar el botón de agregar correspondiente al botón que se hizo clic
+    clickedButton.disabled = true;
+
+    // Verificar el tipo de proceso y aplicar el estilo correspondiente
+    if (processType === "constitucional") {
+        newInput.classList.add("constitucional-input");
+        deleteButton.classList.add("constitucional-delete-button");
+    } else if (processType === "ordinario") {
+        newInput.classList.add("ordinario-input");
+        deleteButton.classList.add("ordinario-delete-button");
+    }
+}
