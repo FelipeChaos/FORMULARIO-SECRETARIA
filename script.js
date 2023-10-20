@@ -108,6 +108,60 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Cambiar el nombre de sujetos procesales a sujetos tanto en el botón como en la sección 
+document.addEventListener("DOMContentLoaded", function () {
+    // elemento select
+    var procesoSelect = document.getElementById("proceso");
+
+    // botón
+    var mostrarSujetosButton = document.getElementById("mostrar-sujetos");
+
+    // sección
+    var tituloSujetos = document.querySelector("#sujetos-procesales h2");
+
+    // Función para cambiar el nombre y mostrar u ocultar el botón
+    function updateSujetosInfo() {
+        if (procesoSelect.value === "Constitucional") {
+            // Cambia el texto del botón a "Sujetos"
+            mostrarSujetosButton.textContent = "Sujetos";
+
+            // Cambia el título de la sección
+            tituloSujetos.textContent = "SUJETOS";
+
+            // Mostrar el botón
+            mostrarSujetosButton.style.display = "block";
+            tituloSujetos.style.display = "block";
+        } else if (procesoSelect.value === "Ordinario") {
+            // Cambia el texto del botón a "Partes Intervinientes"
+            mostrarSujetosButton.textContent = "Sujetos Procesales / Partes Intervinientes";
+
+            // Cambia el título de la sección
+            tituloSujetos.textContent = "Sujetos Procesales / Partes Intervinientes";
+
+            // Mostrar el botón
+            mostrarSujetosButton.style.display = "block";
+            tituloSujetos.style.display = "block";
+        } else {
+            // Restablece el texto original del botón
+            mostrarSujetosButton.textContent = "Sujetos Procesales / Partes Intervinientes";
+
+            // Restablece el título de la sección
+            tituloSujetos.textContent = "Sujetos Procesales / Partes Intervinientes";
+
+            // Ocultar el botón
+            mostrarSujetosButton.style.display = "none";
+            tituloSujetos.style.display = "none";
+        }
+    }
+
+    // Agregar un manejador de eventos al elemento select
+    procesoSelect.addEventListener("change", updateSujetosInfo);
+
+    // Llamar a la función inicialmente para reflejar el estado inicial
+    updateSujetosInfo();
+});
+
+
 
 // Botón para activar sujetos procesales
 document.addEventListener("DOMContentLoaded", function () {
@@ -327,6 +381,48 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error(error);
             });
     }
+});
+
+//lista lugar de reclusión 
+document.addEventListener("DOMContentLoaded", function () {
+    var selectDetenido = document.getElementById("selectdetenido");
+    var carcelSection = document.getElementById("carcelSection");
+    var direccionResidenciaSection = document.getElementById("direccionResidenciaSection");
+    var reclusionSelect = document.getElementById("reclusion");
+    var otroLugarReclusion = document.getElementById("otroLugarReclusion");
+
+    reclusionSelect.addEventListener("change", function () {
+        if (reclusionSelect.value === "Otro") {
+            otroLugarReclusion.style.display = "block";
+        } else {
+            otroLugarReclusion.style.display = "none";
+        }
+    });
+
+    // Cargar la lista de lugares de reclusión desde el archivo JSON
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            var lugaresDeReclusion = data["lugar de reclusión"];
+
+            // Agregar las opciones al select de reclusión
+            lugaresDeReclusion.forEach(function (lugar) {
+                var option = document.createElement("option");
+                option.value = lugar;
+                option.text = lugar;
+                reclusionSelect.appendChild(option);
+            });
+        });
+
+    selectDetenido.addEventListener("change", function () {
+        if (selectDetenido.value === "detenidono") {
+            carcelSection.style.display = "none";
+            direccionResidenciaSection.style.display = "block";
+        } else {
+            carcelSection.style.display = "block";
+            direccionResidenciaSection.style.display = "none";
+        }
+    });
 });
 
 //Espacio de funciones para agregar más campos en secciones
@@ -763,8 +859,9 @@ document.addEventListener("click", function (event) {
     }
 });
 
-function addInput(clickedButton, processType) {
-    var container = document.getElementById("inputContainer");
+function addInput(processType) {
+    var containerId = processType === 'constitucional' ? 'inputContainerConstitucional' : 'inputContainerOrdinario';
+    var container = document.getElementById(containerId);
 
     // Crear un nuevo elemento de entrada (input)
     var newInput = document.createElement("input");
@@ -785,16 +882,5 @@ function addInput(clickedButton, processType) {
     // Agregar el nuevo elemento de entrada y el botón de borrar al contenedor
     container.appendChild(newInput);
     container.appendChild(deleteButton);
-
-    // Desactivar el botón de agregar correspondiente al botón que se hizo clic
-    clickedButton.disabled = true;
-
-    // Verificar el tipo de proceso y aplicar el estilo correspondiente
-    if (processType === "constitucional") {
-        newInput.classList.add("constitucional-input");
-        deleteButton.classList.add("constitucional-delete-button");
-    } else if (processType === "ordinario") {
-        newInput.classList.add("ordinario-input");
-        deleteButton.classList.add("ordinario-delete-button");
-    }
 }
+
