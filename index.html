@@ -73,12 +73,6 @@
                         <input type="text" id="magistradoremi" class="obligatorio" required>
                         <label for="fechaauto" class="obligatorio">Fecha Providencia:</label>
                         <input type="date" id="fecha" name="fecha" required>
-                        <label for="delitos" class="obligatorio">Delitos Investigados:</label>
-                            <P>Añada una casilla por cada delito</P>
-                        <div id="inputContainerConstitucional">
-                            <input type="text" class="added-input">
-                            <button type="button" class="plus-buttonc" onclick="addInput('constitucional')"><strong>+</strong></button>
-                        </div>                     
                         <label for="conocimiento-constitucional" class="obligatorio">¿La Sala de Casación Penal ya tuvo conocimiento de este proceso?</label>
                             <div class="custom-select">
                                 <select name="opciones-constitucional" id="lista-constitucional" required>
@@ -221,8 +215,29 @@
                                     <label for="numerodoc" class="obligatorio">Número de documento</label>
                                         <p>Indique el número de Identificación</p>
                                     <input type="number" min=0 max = 9999999999999999 required>
-                                    <label for="direccionresi" class="obligatorio">Dirección residencia</label>
-                                    <input type="text" name="direccionresi1" required>
+                                    <div id="constitucionalSection" style="display: block;">
+                                        <label for="detenido">Está detenido:</label>
+                                        <select name="deteniopc" id="selectdetenido">
+                                            <option value="seleccionedet">Seleccione una opción</option>
+                                            <option value="detenidosi">Si</option>
+                                            <option value="detenidono">No</option>
+                                        </select>
+                                        <div id="carcelSection" style="display: none;">
+                                            <label for="carcel">Lugar de reclusión:</label>
+                                            <select name="carcel" id="reclusion">
+                                                <option value="carcelselección">Seleccione una opción</option>
+                                            </select>
+                                            <div id="otroLugarReclusion" style="display: none;">
+                                                <label for="otroReclusion">Indique el lugar de reclusión:</label>
+                                                <input type="text" name="otroReclusion">
+                                            </div>
+                                        </div>
+                                        <div id="direccionResidenciaSection" style="display: none;">
+                                            <label for="direccionresi" class="obligatorio">Dirección residencia</label>
+                                            <input type="text" name="direccionresi1">
+                                        </div>
+                                    </div>                                    
+
                                     <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
                                     <input type="number" minlength="10" maxlength="10" required>
                                     <label for="correocons1" class="obligatorio">Correo Electrónico</label>
@@ -309,27 +324,28 @@
                                 <label for="numerodoc" class="obligatorio">Número de documento</label>
                                 <p>Indique el número de Identificación personal</p>
                                 <input type="number" min="0" required>
-                                <label for="detenido">Está detenido:</label>
-                                <select name="deteniopc" id="selectdetenido">
-                                    <option value="seleccionedet">Seleccione una opción</option>
-                                    <option value="detenidosi">Si</option>
-                                    <option value="detenidono">No</option>
-                                </select>
-                            
-                                <div id="carcelSection" style="display:none;">
-                                    <label for="carcel">Lugar de reclusión:</label>
-                                    <select name="carcel" id="reclusion">
-                                        <option value="carcelselección">Seleccione una opción</option>
+                                <div id="ordinarioSection" style="display: block;">
+                                    <label for="detenido">Está detenido:</label>
+                                    <select name="deteniopc" id="selectdetenido2">
+                                        <option value="seleccionedet">Seleccione una opción</option>
+                                        <option value="detenidosi">Si</option>
+                                        <option value="detenidono">No</option>
                                     </select>
-                                    <div id="otroLugarReclusion" style="display:none;">
-                                        <label for="otroReclusion">Indique el lugar de reclusión:</label>
-                                        <input type="text" name="otroReclusion">
+                                
+                                    <div id="carcelSection2" style="display: none;">
+                                        <label for="carcel">Lugar de reclusión:</label>
+                                        <select name="carcel" id="reclusion2">
+                                            <option value="carcelselección">Seleccione una opción</option>
+                                        </select>
+                                        <div id="otroLugarReclusion" style="display: none;">
+                                            <label for="otroReclusion">Indique el lugar de reclusión:</label>
+                                            <input type="text" name="otroReclusion">
+                                        </div>
                                     </div>
-                                </div>
-                            
-                                <div id="direccionResidenciaSection" style="display:none;">
-                                    <label for="direccionresi" class="obligatorio">Dirección residencia</label>
-                                    <input type="text" name="direccionresi1">
+                                    <div id="direccionResidenciaSection" style="display: none;">
+                                        <label for="direccionresi" class="obligatorio">Dirección residencia</label>
+                                        <input type="text" name="direccionresi1">
+                                    </div>
                                 </div>
                                 <label for="correocons1" class="obligatorio">Correo Electrónico</label>
                                 <input type="email" name="correocons1" required>

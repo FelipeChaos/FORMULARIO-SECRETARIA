@@ -161,8 +161,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateSujetosInfo();
 });
 
-
-
 // Botón para activar sujetos procesales
 document.addEventListener("DOMContentLoaded", function () {
     const mostrarSujetosButton = document.getElementById("mostrar-sujetos");
@@ -321,7 +319,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
 // Listados de magistrados
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -383,47 +380,65 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-//lista lugar de reclusión 
-document.addEventListener("DOMContentLoaded", function () {
+// lista lugar de reclusión 
+  document.addEventListener("DOMContentLoaded", function () {
+    var procesoSelect = document.getElementById("proceso");
     var selectDetenido = document.getElementById("selectdetenido");
     var carcelSection = document.getElementById("carcelSection");
-    var direccionResidenciaSection = document.getElementById("direccionResidenciaSection");
-    var reclusionSelect = document.getElementById("reclusion");
     var otroLugarReclusion = document.getElementById("otroLugarReclusion");
+    var direccionResidenciaSection = document.getElementById("direccionresi1");
+    var lugarReclusionSelect = document.getElementById("lugarReclusion");
 
-    reclusionSelect.addEventListener("change", function () {
-        if (reclusionSelect.value === "Otro") {
-            otroLugarReclusion.style.display = "block";
-        } else {
-            otroLugarReclusion.style.display = "none";
-        }
-    });
-
-    // Cargar la lista de lugares de reclusión desde el archivo JSON
-    fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
-            var lugaresDeReclusion = data["lugar de reclusión"];
-
-            // Agregar las opciones al select de reclusión
-            lugaresDeReclusion.forEach(function (lugar) {
-                var option = document.createElement("option");
-                option.value = lugar;
-                option.text = lugar;
-                reclusionSelect.appendChild(option);
-            });
+    // Cargar la lista de lugares de reclusión desde data.json
+    fetch("data.json")
+      .then((response) => response.json())
+      .then((data) => {
+        var lugaresReclusion = data["lugar de reclusión"];
+        lugaresReclusion.forEach(function (lugar) {
+          var option = document.createElement("option");
+          option.value = lugar;
+          option.text = lugar;
+          lugarReclusionSelect.appendChild(option);
         });
+      })
+      .catch(function (error) {
+        console.error("Error al cargar la lista de lugares de reclusión:", error);
+      });
+
+    procesoSelect.addEventListener("change", function () {
+      if (procesoSelect.value === "Constitucional" || procesoSelect.value === "Ordinario") {
+        selectDetenido.style.display = "block";
+        carcelSection.style.display = "none";
+        otroLugarReclusion.style.display = "none";
+        direccionResidenciaSection.style.display = "none";
+      } else {
+        selectDetenido.style.display = "none";
+        carcelSection.style.display = "none";
+        otroLugarReclusion.style.display = "none";
+        direccionResidenciaSection.style.display = "none";
+      }
+    });
 
     selectDetenido.addEventListener("change", function () {
-        if (selectDetenido.value === "detenidono") {
-            carcelSection.style.display = "none";
-            direccionResidenciaSection.style.display = "block";
-        } else {
-            carcelSection.style.display = "block";
-            direccionResidenciaSection.style.display = "none";
-        }
+      if (selectDetenido.value === "detenidosi") {
+        carcelSection.style.display = "block";
+        otroLugarReclusion.style.display = "none";
+        direccionResidenciaSection.style.display = "none";
+      } else if (selectDetenido.value === "detenidono") {
+        carcelSection.style.display = "none";
+        otroLugarReclusion.style.display = "none";
+        direccionResidenciaSection.style.display = "block";
+      } else if (selectDetenido.value === "detenidootros") {
+        carcelSection.style.display = "none";
+        otroLugarReclusion.style.display = "block";
+        direccionResidenciaSection.style.display = "none";
+      } else {
+        carcelSection.style.display = "none";
+        otroLugarReclusion.style.display = "none";
+        direccionResidenciaSection.style.display = "none";
+      }
     });
-});
+  });
 
 //Espacio de funciones para agregar más campos en secciones
 
