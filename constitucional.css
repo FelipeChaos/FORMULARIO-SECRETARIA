@@ -111,35 +111,35 @@ button:hover {
     text-align: center;
 }
 
-/* Estilos para el pie de página */
-footer, footer:last-of-type {
-    text-align: center;
-    margin-top: 20px;
-    background-color: transparent;
-    color: black;
-    padding: 10px 0;
-}
-
 /* Estilos para los títulos h2 */
 h2 {
     text-align: center;
     background-color: rgb(239, 185, 13);
 }
-
-/* Estilos para los elementos con clase .obligatorio */
-.obligatorio::after {
-    content: " *";
-    color: red;
-}
-
-.column-container {
-    display: flex;
-}
+/* Estilos para los h3 */
+td > h3 {
+    position:relative;
+    background: rgba(64, 142, 0, 0.5); 
+    color: black; 
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
 
 .column {
-    flex: 1;
-    margin: 0 10px;
-}
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+.column-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
 
 /* Estilos para la tabla */
 .column-table {
@@ -194,13 +194,17 @@ h2 {
 
 /* Estilos para el footer */
 footer {
-    background: linear-gradient(90deg, rgba(255, 215, 0, 0.7) 26.33%, rgba(255,215,0,0.7) 30.66%, rgba(0, 51, 160, 0.7) 37.33%, rgba(0, 51, 160, 0.7) 36.66%, rgba(206, 17, 38, 0.7) 95%), url('Logo_Sala_Penal-removebg-preview.png');
-    background-size:contain;
+    background: linear-gradient(
+        110deg,
+        rgba(255, 215, 0, 0.9) 40%, /* Amarillo al 50% */
+        rgba(255, 215, 0, 0.9) 45%, /* Amarillo al 50% */
+        rgba(0, 51, 160, 0.7) 60%, /* Azul al 25% */
+        rgba(206, 17, 38, 0.7) 100% /* Rojo al 25% */
+    ), url('Logo_Sala_Penal-removebg-preview.png');    background-size:contain;
     background-repeat: no-repeat;
     background-position: right;
     padding: 20px;
     text-align: left;
-    box-shadow: 10px -10px 5px rgba(0, 0, 0, 0.2);
     position: relative;
 }
 
@@ -222,8 +226,28 @@ footer {
     flex: 1;
 }
 
-.glass-overlay p {
+.glass-overlay p,h3 {
     font-size: 20px;
     line-height: 1.5;
     text-align: center;
 }
+
+/* Estilos para los elementos con clase .obligatorio */
+.obligatorio::after {
+    content: " *";
+    color: red;
+}
+
+/* Ajusta las columnas a la pantalla pequeña */
+@media only screen and (max-width: 768px) {
+    .column-container {
+      grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+    }
+  }
+  
+  /* Ajusta las columnas para pantallas más pequeñas */
+  @media only screen and (max-width: 480px) {
+    .column-container {
+      grid-template-columns: 1fr; /* Una sola columna en pantallas aún más pequeñas */
+    }
+  }

@@ -59,7 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
+// Este script es para calcular el ancho de las columnas al cargar la página
+window.addEventListener('load', () => {
+    const columns = document.querySelectorAll('.column');
+    columns.forEach((column) => {
+        const h3 = column.querySelector('h3');
+        column.style.width = h3.offsetWidth + 'px';
+    });
+});
 // Código de listas en pregunta de si ya tuvo conocimiento
 document.addEventListener("DOMContentLoaded", function () {
     const procesoSelect = document.getElementById("proceso");
@@ -381,64 +388,131 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // lista lugar de reclusión 
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     var procesoSelect = document.getElementById("proceso");
     var selectDetenido = document.getElementById("selectdetenido");
+    var selectDetenido2 = document.getElementById("selectdetenido2")
     var carcelSection = document.getElementById("carcelSection");
+    var carcelSection2 = document.getElementById("carcelSection2");
+    var direccionResidenciaSectionC = document.getElementById("direccionResidenciaSectionC");
+    var direccionResidenciaSectionO = document.getElementById("direccionResidenciaSectionO");
+    var lugarReclusion = document.getElementById("reclusion");
+    var lugarReclusion2 = document.getElementById("reclusion2");
     var otroLugarReclusion = document.getElementById("otroLugarReclusion");
-    var direccionResidenciaSection = document.getElementById("direccionresi1");
-    var lugarReclusionSelect = document.getElementById("lugarReclusion");
+    var otroLugarReclusion2 = document.getElementById("otroLugarReclusion2");
 
-    // Cargar la lista de lugares de reclusión desde data.json
+
+    // Carga la lista de carceles desde data.json
     fetch("data.json")
-      .then((response) => response.json())
-      .then((data) => {
-        var lugaresReclusion = data["lugar de reclusión"];
-        lugaresReclusion.forEach(function (lugar) {
-          var option = document.createElement("option");
-          option.value = lugar;
-          option.text = lugar;
-          lugarReclusionSelect.appendChild(option);
+        .then(response =>{
+            if(!response.ok) {
+                throw new Error ('No se pudo cargar el archivo data.json');
+            }
+            return response.json();
+        })
+        .then(data => {
+            data['lugar de reclusión'].forEach( option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = option;
+                lugarReclusion.appendChild(optionElement);
+                lugarReclusion2.appendChild(optionElement.cloneNode(true));
+            })
         });
-      })
-      .catch(function (error) {
-        console.error("Error al cargar la lista de lugares de reclusión:", error);
-      });
+
 
     procesoSelect.addEventListener("change", function () {
-      if (procesoSelect.value === "Constitucional" || procesoSelect.value === "Ordinario") {
-        selectDetenido.style.display = "block";
-        carcelSection.style.display = "none";
-        otroLugarReclusion.style.display = "none";
-        direccionResidenciaSection.style.display = "none";
-      } else {
-        selectDetenido.style.display = "none";
-        carcelSection.style.display = "none";
-        otroLugarReclusion.style.display = "none";
-        direccionResidenciaSection.style.display = "none";
-      }
+        if (procesoSelect.value === "Constitucional") {
+            direccionResidenciaSectionC.style.display = "none";
+            direccionResidenciaSectionO.style.display = "none";
+            carcelSection.style.display = "none";
+            carcelSection2.style.display = "none";
+            otroLugarReclusion.style.display = "none";
+            otroLugarReclusionInput.style.display = "none";
+        } else if (procesoSelect.value === "Ordinario") {
+            direccionResidenciaSectionC.style.display = "none";
+            direccionResidenciaSectionO.style.display = "none";
+            carcelSection.style.display = "none";
+            carcelSection2.style.display = "none";
+            otroLugarReclusion.style.display = "block";
+            otroLugarReclusionInput.style.display = "block";
+        } else {
+            direccionResidenciaSectionC.style.display = "none";
+            direccionResidenciaSectionO.style.display = "none";
+            carcelSection.style.display = "none";
+            carcelSection2.style.display = "none";
+            otroLugarReclusion.style.display = "none";
+            otroLugarReclusionInput.style.display = "none";
+        }
     });
-
     selectDetenido.addEventListener("change", function () {
       if (selectDetenido.value === "detenidosi") {
         carcelSection.style.display = "block";
         otroLugarReclusion.style.display = "none";
-        direccionResidenciaSection.style.display = "none";
+        direccionResidenciaSectionC.style.display = "none";
+        direccionResidenciaSectionO.style.display = "none";
       } else if (selectDetenido.value === "detenidono") {
         carcelSection.style.display = "none";
         otroLugarReclusion.style.display = "none";
-        direccionResidenciaSection.style.display = "block";
+        direccionResidenciaSectionC.style.display = "block";
+        direccionResidenciaSectionO.style.display = "block";
       } else if (selectDetenido.value === "detenidootros") {
         carcelSection.style.display = "none";
         otroLugarReclusion.style.display = "block";
-        direccionResidenciaSection.style.display = "none";
+        direccionResidenciaSectionC.style.display = "none";
+        direccionResidenciaSectionO.style.display = "none";
       } else {
         carcelSection.style.display = "none";
         otroLugarReclusion.style.display = "none";
-        direccionResidenciaSection.style.display = "none";
+        direccionResidenciaSectionC.style.display = "none";
+        direccionResidenciaSectionO.style.display = "none";
       }
     });
-  });
+    selectDetenido2.addEventListener("change", function () {
+        if (selectDetenido2.value === "detenidosi") {
+          carcelSection2.style.display = "block";
+          otroLugarReclusion.style.display = "none";
+          direccionResidenciaSectionC.style.display = "none";
+          direccionResidenciaSectionO.style.display = "none";
+        } else if (selectDetenido2.value === "detenidono") {
+          carcelSection2.style.display = "none";
+          otroLugarReclusion.style.display = "none";
+          direccionResidenciaSectionC.style.display = "block";
+          direccionResidenciaSectionO.style.display = "block";
+        } else if (selectDetenido2.value === "detenidootros") {
+          carcelSection2.style.display = "none";
+          otroLugarReclusion.style.display = "block";
+          direccionResidenciaSectionC.style.display = "none";
+          direccionResidenciaSectionO.style.display = "none";
+        } else {
+          carcelSection2.style.display = "none";
+          otroLugarReclusion.style.display = "none";
+          direccionResidenciaSectionC.style.display = "none";
+          direccionResidenciaSectionO.style.display = "none";
+        }
+      });
+      lugarReclusion.addEventListener("change", function () {
+        var selectedOption = lugarReclusion.options[lugarReclusion.selectedIndex].value;
+    
+        if (selectedOption === "Otro") {
+            otroLugarReclusion.style.display = "block";
+            otroLugarReclusion2.style.display = "none";
+        } else {
+            otroLugarReclusion.style.display = "none";
+        }
+    });
+    
+    lugarReclusion2.addEventListener("change", function () {
+        var selectedOption2 = lugarReclusion2.options[lugarReclusion2.selectedIndex].value;
+    
+        if (selectedOption2 === "Otro") {
+            otroLugarReclusion2.style.display = "block";
+            otroLugarReclusion.style.display = "none";
+        } else {
+            otroLugarReclusion2.style.display = "none";
+        }
+    });
+})
 
 //Espacio de funciones para agregar más campos en secciones
 
@@ -449,45 +523,53 @@ function agregarCamposAccionados() {
     var accionadosContainer = document.getElementById('accionados');
     var nuevoCampo = document.createElement('div');
 
-    contadorCamposAccionados++; // Incrementa el contador
+    contadorCamposAccionados++; 
 
     nuevoCampo.innerHTML = `
         <hr>
-        <label for="accionado${contadorCamposAccionados}" class="obligatorio">Accionados - Vinculados</label>
-        <p>Nombre de la entidad, corporación o persona</p>
-        <input type="text" id="accionado${contadorCamposAccionados}" name="accionado${contadorCamposAccionados}" class="obligatorio" required>
-        <label for="correo${contadorCamposAccionados}" class="obligatorio">Correo:</label>
-        <input type="text" id="correo${contadorCamposAccionados}" name="correo${contadorCamposAccionados}" class="obligatorio" required>
-        <label for="tel${contadorCamposAccionados}" class="obligatorio">Número de teléfono:</label>
-        <p>Número de teléfono donde pueda ser contactado fácilmente</p>
-        <input type="text" id="tel${contadorCamposAccionados}" class="obligatorio" required>
-        <label for="dir${contadorCamposAccionados}" class="obligatorio">Dirección:</label>
-        <p>Dirección física para notificaciones.</p>
-        <input type="text" id="dir${contadorCamposAccionados}" class="obligatorio" required>
+        <div id="accionados" style="display: block;">
+        <div class="text" style="display: block;">
+            <label for="accionados">Seleccione una opción</label>
+            <select name="opcionaccionados" id="acciovincu">
+                <option value="accionado">Accionado</option>
+                <option value="vinculado">Vinculado</option>
+            </select>
+            <p>Nombre de la entidad, corporación o persona</p>
+            <input type="text" id="accionado1" name="accionado1">
+                <div id="accionadosInfo" style="display: block;">
+                    <label for="correo1">Correo:</label>
+                    <p>Indique un correo electrónico para notificaciones</p>
+                    <input type="email" id="correo1" name="correo1">
+                    <label for="tel1">Número de teléfono:</label>
+                    <p>Número de teléfono donde pueda ser contactado fácilmente</p>
+                    <input type="number" id="tel1" minlength="10" maxlength="10">
+                    <label for="dir1">Dirección:</label>
+                    <p>Dirección física para notificaciones.</p>
+                    <input type="text" id="dir1">
+                </div>
+            </div>
+        </div>
         <button type="button" onclick="eliminarCampo('accionados', this)">Eliminar Campo</button>
+        <hr>
     `;
 
     accionadosContainer.appendChild(nuevoCampo);
-
-    // Agregar una línea divisoria
-    var lineaDivisoria = document.createElement('hr');
-    accionadosContainer.appendChild(lineaDivisoria);
 }
 
 function eliminarCampo(contenedorId, botonEliminar) {
     var campo = botonEliminar.parentNode;
     var accionadosContainer = document.getElementById(contenedorId);
 
-    var lineaDivisoria = campo.previousElementSibling;
-    while (lineaDivisoria && lineaDivisoria.tagName !== 'HR') {
-        lineaDivisoria = lineaDivisoria.previousElementSibling;
-    }
+    // Encuentra la posición del campo en el contenedor
+    var index = Array.from(accionadosContainer.children).indexOf(campo);
 
-    if (lineaDivisoria && lineaDivisoria.tagName === 'HR') {
-        accionadosContainer.removeChild(lineaDivisoria);
+    if (index >= 0) {
+        // Elimina el campo y todos los elementos posteriores
+        while (index < accionadosContainer.children.length) {
+            var siguienteElemento = accionadosContainer.children[index];
+            accionadosContainer.removeChild(siguienteElemento);
+        }
     }
-
-    accionadosContainer.removeChild(campo);
 }
 
 // Agregar campos a accionantes
@@ -496,13 +578,14 @@ var contadorCamposAccionantes = 1;
 function agregarCamposAccionantes() {
     var accionantesContainer = document.getElementById('accionantes');
     var nuevoCampo = document.createElement('div');
+    contadorCamposAccionantes++;
 
     nuevoCampo.innerHTML = `
         <hr>
+        <div id="campo-accionantes">
         <label for="nombreacc${contadorCamposAccionantes}" class="obligatorio">Nombre</label><br>
         <p>Nombres completos sin abreviaturas ni siglas</p>
         <input type="text" id="nombreacc${contadorCamposAccionantes}" required>
-
         <label for="tipodoctute${contadorCamposAccionantes}" class="obligatorio">Tipo de documento</label>
         <select name="tipodoc" id="tipodoctute${contadorCamposAccionantes}">
             <option value="seleciondoc${contadorCamposAccionantes}">Seleccione un tipo de documento</option>
@@ -511,35 +594,40 @@ function agregarCamposAccionantes() {
             <option value="cedulaext${contadorCamposAccionantes}">Cédula de extranjería</option>
             <option value="pasaporte${contadorCamposAccionantes}">Pasaporte</option>
         </select>
-
         <label for="numerodoc${contadorCamposAccionantes}" class="obligatorio">Número de documento</label>
         <p>Debe poner el número de Identificación personal</p>
         <input type="number" id="numerodoc${contadorCamposAccionantes}" min="0" max="9999999999999999" required>
-
         <label for="direccionresi${contadorCamposAccionantes}" class="obligatorio">Dirección residencia</label>
         <input type="text" name="direccionresi${contadorCamposAccionantes}" required>
-
         <label for="teltute${contadorCamposAccionantes}" class="obligatorio">Teléfono de contacto</label>
         <input type="number" id="teltute${contadorCamposAccionantes}" min="0" max="9999999999999999" required>
-
         <label for="correocons${contadorCamposAccionantes}" class="obligatorio">Correo Electrónico</label>
         <input type="email" name="correocons${contadorCamposAccionantes}" required>
-
         <button type="button" onclick="agregarCamposApoderado(this)">Agregar Apoderado</button>
         <button type="button" onclick="agregarCamposAgenteOficioso(this)">Agregar Agente Oficioso</button>
-
-        <button type="button" onclick="eliminarCampo('accionantes', this)">Eliminar Campo</button>
+        </div>
+        <button type="button" onclick="eliminarCampo('accionantes', this)">Eliminar Campo</button>        
+        <hr>
     `;
-
     accionantesContainer.appendChild(nuevoCampo);
-
-    // Agregar una línea divisoria
-    var lineaDivisoria = document.createElement('hr');
-    accionantesContainer.appendChild(lineaDivisoria);
-    contadorCamposAccionantes++;
 }
 
-// Funcionalidades para agregar apoderado y agente oficioso
+//eliminar elementos accionantes
+function eliminarCampo(containerId, botonEliminar) {
+    var campo = botonEliminar.parentNode;
+    var accionantesContainer = document.getElementById(containerId);
+
+    var index = Array.from(accionantesContainer.children).indexOf(campo);
+    
+    if (index >=0){
+        //elimina el campo y todos los elementos anteriores
+        while (index < accionantesContainer.children.length){
+            var siguienteElemento=accionantesContainer.children[index];
+            accionantesContainer.removeChild(siguienteElemento);
+        }
+    }
+}
+
 var mostrarApoderado = false;
 var mostrarAgenteOficioso = false;
 
@@ -555,7 +643,6 @@ function toggleAgenteOficioso() {
     agenteOficiosoContainer.style.display = mostrarAgenteOficioso ? 'block' : 'none';
 }
 
-// Agregar apoderados
 function agregarCamposApoderado(boton) {
     var accionanteContainer = boton.parentElement;
     var apoderadoContainer = document.createElement('div');
@@ -569,7 +656,7 @@ function agregarCamposApoderado(boton) {
                 <input type="text" name="nombre-apoderado" id="nombreapoderado" required>
                 <label for="cedulaapoderado" class="obligatorio">Cédula de Ciudadanía</label>
                 <input type="text" name="cedulaapoderado" required>
-                <label for="tarjetaprof" class="obligatorio">Tarjeta Profesional</label>
+                <label for="tarjetaprof" class "obligatorio">Tarjeta Profesional</label>
                 <input type="text" name="tarjetaprofapo" required>
                 <label for="correocons1" class="obligatorio">Correo Electrónico</label>
                 <p>Relacione el correo electrónico aportado al Registro Nacional de Abogados y otros donde pueda ser contactado.</p>
@@ -583,7 +670,6 @@ function agregarCamposApoderado(boton) {
     accionanteContainer.appendChild(apoderadoContainer);
 }
 
-// Agregar Agente oficioso
 function agregarCamposAgenteOficioso(boton) {
     var accionanteContainer = boton.parentElement;
     var agenteOficiosoContainer = document.createElement('div');
@@ -596,7 +682,7 @@ function agregarCamposAgenteOficioso(boton) {
                 <label for="nombre-agente" class="obligatorio">Nombre Completo</label>
                 <input type="text" name="nombre-agente" id="nombre-agente" required>
                 <label for="cedula-agente" class="obligatorio">Cédula de Ciudadanía</label>
-                <input type="text" name="cedula-agente" required>
+                <input type="text" name "cedula-agente" required>
                 <label for="tarjeta-profesional-agente" class="obligatorio">Tarjeta Profesional</label>
                 <input type="text" name="tarjeta-profesional-agente" required>
                 <label for="correo-agente" class="obligatorio">Correo Electrónico</label>
@@ -604,56 +690,11 @@ function agregarCamposAgenteOficioso(boton) {
                 <input type="email" name="correo-agente" required>
                 <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
                 <input type="number" min=0 max=9999999999999999 required>
-                <button type="button" onclick="eliminarCampo('agenteof', this)">Eliminar Agente Oficioso</button>
+                <button type="button" onclick="eliminarCampo('agenteoficioso', this)">Eliminar Agente Oficioso</button>
             </div>
         </div>
     `;
     accionanteContainer.appendChild(agenteOficiosoContainer);
-}
-
-// Función para eliminar campos
-function eliminarCampo(containerId, boton) {
-    var accionanteContainer = boton.parentElement;
-    var accionantesContainer = document.getElementById(containerId);
-
-    // Buscar el índice del campo actual
-    var index = Array.prototype.indexOf.call(accionantesContainer.children, accionanteContainer);
-    // Eliminar el campo actual
-    accionantesContainer.removeChild(accionanteContainer);
-
-    // Eliminar la línea divisoria anterior (hr) si existe
-    var elementos = accionantesContainer.children;
-    for (var i = 0; i < elementos.length; i++) {
-        if (elementos[i].tagName === "HR") {
-            accionantesContainer.removeChild(elementos[i]);
-            break; // Salir del bucle después de eliminar la primera línea divisoria encontrada
-        }
-    }
-}
-
-// Función para eliminar campos de Apoderado o Agente Oficioso
-function eliminarCampo(containerId, boton) {
-    var elementoAEliminar = boton.parentElement;
-    var contenedorPadre = elementoAEliminar.parentElement;
-
-    // Encuentra el elemento HR anterior al elemento a eliminar
-    var hrElement = elementoAEliminar.previousElementSibling;
-
-    // Elimina el elemento a eliminar
-    contenedorPadre.removeChild(elementoAEliminar);
-
-    // Elimina la línea divisoria anterior (hr) si existe
-    if (hrElement && hrElement.tagName === "hr") {
-        contenedorPadre.removeChild(hrElement);
-    }
-
-    // Encuentra el elemento h3 anterior al elemento a eliminar
-    var h3Element = elementoAEliminar.previousElementSibling;
-
-    // Elimina el título h3 anterior al elemento a eliminar si existe
-    if (h3Element && h3Element.tagName === "h3") {
-        contenedorPadre.removeChild(h3Element);
-    }
 }
 
 // Funciones de toggling
@@ -814,6 +855,18 @@ function agregarCampo(nombreCampo) {
     });
 }
 
+function toggleApoderado2(button) {
+    var apoderado2 = document.getElementById("apoderado2");
+
+    if (apoderado2.style.display === "none") {
+        apoderado2.style.display = "block";
+        button.textContent = "Ocultar Apoderado";
+    } else {
+        apoderado2.style.display = "none";
+        button.textContent = "Agregar Apoderado";
+    }
+}
+
 // Agregar un manejador de eventos al botón "Agregar Víctima(s)"
 var agregarVictimasButton = document.getElementById("agregarCampoVictimas");
 agregarVictimasButton.addEventListener("click", function () {
@@ -873,7 +926,7 @@ document.addEventListener("click", function (event) {
         eliminarCampo(event.target);
     }
 });
-
+//Funciones del botón + (añadir delitos)
 function addInput(processType) {
     var containerId = processType === 'constitucional' ? 'inputContainerConstitucional' : 'inputContainerOrdinario';
     var container = document.getElementById(containerId);
@@ -898,4 +951,3 @@ function addInput(processType) {
     container.appendChild(newInput);
     container.appendChild(deleteButton);
 }
-
