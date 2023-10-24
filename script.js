@@ -67,6 +67,51 @@ window.addEventListener('load', () => {
         column.style.width = h3.offsetWidth + 'px';
     });
 });
+
+//condicionales a la selección de constitucionales y ordinarios
+document.addEventListener("DOMContentLoaded", function () {
+    const procesoSelect = document.getElementById("proceso");
+    const cuiInput = document.getElementById("cui");
+
+    // Al cargar la página, limpia el valor de CUI y habilita ambas opciones.
+    cuiInput.value = "";
+    procesoSelect.querySelectorAll("option").forEach((option) => {
+        option.disabled = false;
+    });
+
+    let formSnapshot = "";
+
+    procesoSelect.addEventListener("change", function () {
+        const seleccion = procesoSelect.value;
+
+        // Habilitar todas las opciones primero
+        procesoSelect.querySelectorAll("option").forEach((option) => {
+            option.disabled = false;
+        });
+
+        // Ahora, deshabilita la opción seleccionada
+        if (seleccion === "Constitucional") {
+            procesoSelect.querySelector('option[value="Ordinario"]').disabled = true;
+        } else if (seleccion === "Ordinario") {
+            procesoSelect.querySelector('option[value="Constitucional"]').disabled = true;
+        }
+
+        // Borra todo lo que sigue en el formulario después del CUI
+        const formFields = document.querySelectorAll("#formulario input, #formulario select");
+        const foundCui = false;
+
+        formFields.forEach((element) => {
+            if (foundCui) {
+                element.value = "";
+            }
+
+            if (element === cuiInput) {
+                foundCui = true;
+            }
+        });
+    });
+});
+
 // Código de listas en pregunta de si ya tuvo conocimiento
 document.addEventListener("DOMContentLoaded", function () {
     const procesoSelect = document.getElementById("proceso");
@@ -635,12 +680,16 @@ function toggleApoderado() {
     var apoderadoContainer = document.getElementById('apoderado');
     mostrarApoderado = !mostrarApoderado;
     apoderadoContainer.style.display = mostrarApoderado ? 'block' : 'none';
+    var button = document.getElementById('apoderadoButton');
+    button.textContent = mostrarApoderado ? 'Ocultar Apoderado' : 'Agregar Apoderado';
 }
 
 function toggleAgenteOficioso() {
     var agenteOficiosoContainer = document.getElementById('agenteof');
     mostrarAgenteOficioso = !mostrarAgenteOficioso;
     agenteOficiosoContainer.style.display = mostrarAgenteOficioso ? 'block' : 'none';
+    var button = document.getElementById('agenteOficiosoButton');
+    button.textContent = mostrarAgenteOficioso ? 'Ocultar Agente Oficioso' : 'Agregar Agente Oficioso';
 }
 
 function agregarCamposApoderado(boton) {
@@ -951,3 +1000,28 @@ function addInput(processType) {
     container.appendChild(newInput);
     container.appendChild(deleteButton);
 }
+
+//agregar ministerio público y acusador privado
+function toggleacusador(button) {
+    var section = button.nextElementSibling;
+    if (section.style.display === 'none' || section.style.display === '') {
+        section.style.display = 'block';
+        button.textContent = 'Ocultar Acusador Privado';
+    } else {
+        section.style.display = 'none';
+        button.textContent = 'Agregar Acusador Privado';
+    }
+}
+
+function toggleminpublico(button) {
+    var section = button.nextElementSibling;
+    if (section.style.display === 'none' || section.style.display === '') {
+        section.style.display = 'block';
+        button.textContent = 'Ocultar Ministerio Público';
+    } else {
+        section.style.display = 'none';
+        button.textContent = 'Agregar Ministerio Público';
+    }
+}
+//Botón submit - validación de campos para enviar 
+ 

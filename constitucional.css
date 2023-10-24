@@ -48,7 +48,7 @@ form {
 }
 
 /* Estilos para las secciones */
-section, .seccionproceso, .section.inforpresci {
+section, .seccionproceso {
     margin-bottom: 20px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -56,9 +56,21 @@ section, .seccionproceso, .section.inforpresci {
     border-radius: 15px;
 }
 
+.columnasjuzgados {
+    display: flex;
+    justify-content: space-between;
+}
+
+.juzgado1, .juzgado2 {
+    flex-basis: calc(100% - 900%);
+    padding: 1px;
+    width: 1200px;
+    border-radius: 5px;
+}
+
 #sujetos-procesales {
     text-align: left;
-    padding: 15px;
+    padding: 10px;
 }
 
 /* Estilo específico para el título de Sujetos Procesales */
@@ -100,6 +112,7 @@ button {
     cursor: pointer;
     width: 200px;
     transition: .30s ease-in;
+    position: relative;
 }
 
 button:hover {
@@ -111,20 +124,38 @@ button:hover {
     text-align: center;
 }
 
+/* Estilos para la flecha en el botón */
+button:after {
+    content: "\00BB";
+    position: absolute;
+    opacity: 0;
+    font-size: 20px;
+    line-height: 40px;
+    top: 0;
+    right: -20px;
+    transition: 0.4s;
+}
+
+button:hover:after {
+    opacity: 1;
+    right: 10px;
+}
+
 /* Estilos para los títulos h2 */
 h2 {
     text-align: center;
     background-color: rgb(239, 185, 13);
 }
+
 /* Estilos para los h3 */
 td > h3 {
-    position:relative;
-    background: rgba(64, 142, 0, 0.5); 
-    color: black; 
+    position: relative;
+    background: rgba(64, 142, 0, 0.5);
+    color: black;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
-  }
+}
 
 .column {
     position: relative;
@@ -132,14 +163,13 @@ td > h3 {
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-  }
+}
 
 .column-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-  }
-
+}
 
 /* Estilos para la tabla */
 .column-table {
@@ -154,24 +184,13 @@ td > h3 {
     text-align: left;
 }
 
-.columnas {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 3px;
-}
-
-.column-table td:nth-child(1),
-.column-table td:nth-child(2) {
-    margin-right: 10px;
-}
-
 /* Para agregar una línea cada vez que se añada un hr */
 .campo-accionado, .campo-accionante {
     border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
+
 
 /* Estilos para el botón de más (+) */
 .plus-button {
@@ -196,10 +215,10 @@ td > h3 {
 footer {
     background: linear-gradient(
         110deg,
-        rgba(255, 215, 0, 0.9) 40%, /* Amarillo al 50% */
-        rgba(255, 215, 0, 0.9) 45%, /* Amarillo al 50% */
-        rgba(0, 51, 160, 0.7) 60%, /* Azul al 25% */
-        rgba(206, 17, 38, 0.7) 100% /* Rojo al 25% */
+        rgba(255, 215, 0, 0.9) 40%, 
+        rgba(255, 215, 0, 0.9) 45%, 
+        rgba(0, 51, 160, 0.7) 60%, 
+        rgba(206, 17, 38, 0.7) 100% 
     ), url('Logo_Sala_Penal-removebg-preview.png');    background-size:contain;
     background-repeat: no-repeat;
     background-position: right;
@@ -250,4 +269,59 @@ footer {
     .column-container {
       grid-template-columns: 1fr; /* Una sola columna en pantallas aún más pequeñas */
     }
-  }
+}
+/* Notificación de bienvenida */
+.notification {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    width: 80px;
+    padding: 10px 10px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #f6f5f9;
+    box-shadow: 0 100px 10px rgba(0, 0, 0, 0.1);
+    animation: fade-in 7s linear forwards, change-box-shadow 5s 0.25s linear forwards;
+    opacity: 5;
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.notification__progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 900%;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: load 5s 1s linear;
+}
+
+@keyframes fade-in {
+    5% { 
+        opacity: 15;
+        visibility: visible;
+        transform: translateY(1);
+    }
+    90% {
+        opacity: 1;
+    }
+}
+
+@keyframes load {
+    to {
+        transform: scaleX(1);
+    }
+}
+@keyframes change-box-shadow {
+    20% {
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 0 0 5px #dac438;
+    }
+    45% {
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #3250bf;
+    }
+    100% {
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 0 0 3px #ff0000;
+    }
+}
