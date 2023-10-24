@@ -47,7 +47,7 @@
             </div>
             <label for="Tipo_Proceso" class="obligatorio">Tipo de Proceso:</label>
             <div class="custom-select">
-                <select id="proceso" name="proceso" required>Seleccione una opcion
+                <select id="proceso" name="proceso" required>
                     <option value="seleccion1">Seleccione una opción</option>
                     <option value="Constitucional">Constitucionales</option>
                     <option value="Ordinario">Ordinarios</option>
@@ -72,7 +72,7 @@
                         <label for="motivo" class="obligatorio">Motivo de remisión:</label>
                         <input type="text" id="magistradoremi" class="obligatorio" required>
                         <label for="fechaauto" class="obligatorio">Fecha Providencia:</label>
-                        <input type="date" id="fecha" name="fecha" required>
+                        <input type="date" id="fechaprov" name="fecha" required>
                         <label for="conocimiento-constitucional" class="obligatorio">¿La Sala de Casación Penal ya tuvo conocimiento de este proceso?</label>
                             <div class="custom-select">
                                 <select name="opciones-constitucional" id="lista-constitucional" required>
@@ -142,12 +142,11 @@
                             <!-- Sección Juzgados Primera y Segunda Instancia -->
                             <section id="juzgado1rainstancia" style="display: none;">
                                 <h2>Juzgado / Tribunal de conocimiento previo</h2>
-                                <div class="columnasjuzgados">
-                                    <table class="columnjuzgados">
+                                <div class="columnas">
+                                    <table class="column">
                                         <tr>
                                             <td>
-                                                <div class="juzgado1">
-                                                    <div id="juzgado1ra">
+                                                <div id="juzgado1ra">
                                                     <label for="juzgado1ra" class="obligatorio">Indique el despacho de Primera Instancia</label>
                                                     <input type="text" name="juzgado1ra" id="juzgado1" required>
                                                     <label for="correojuz1ra" class="obligatorio">Correo:</label>
@@ -161,13 +160,11 @@
                                                     <input type="text" id="dirjuz1ra"> <br>
                                                     <label for="sentencia1inst" class="obligatorio" >Sentencia de Primera Instancia</label>
                                                     <input type="date" id="sentencia1" name="sentencia1" required>
-                                                    </div>
                                                 </div>
                                             </td>
                                             
                                             <td>
-                                                <div class="juzgado2">
-                                                    <div id="juzgado2da">
+                                                <div id="juzgado2da">
                                                     <label for="juzgado2da" class="obligatorio">Indique el despacho de Segunda Instancia</label>
                                                     <input type="text" name="juzgado2da" id="juzgado2" required>
                                                     <label for="correojuz2da" class="obligatorio">Correo:</label>
@@ -182,7 +179,6 @@
                                                     <label for="sentencia2inst" class="obligatorio" >Sentencia de Segunda Instancia</label>
                                                     <input type="date" required>
                                                 </div>
-                                                </div>
                                             </td>
                                         </tr>
                                     </table>
@@ -196,6 +192,7 @@
                         <button id="mostrar-sujetos" type="button">Sujetos Procesales / <br> Partes Intervinientes</button><br><br>
                         
                             <!-- INCIO SECCIÓN Sujetos Procesales -->
+
                 <section id="sujetos-procesales" style="display: none;">
                 <h2>Sujetos Procesales / Partes Intervinientes</h2>
                 <table class="column-table">
@@ -281,8 +278,8 @@
                                             </div>
                                         </div>
                                                     </div>
-                                                    <button type="button" onclick="toggleApoderado()" id="apoderadoButton">Agregar Apoderado</button>
-                                                    <button type="button" onclick="toggleAgenteOficioso()" id="agenteOficiosoButton">Agregar Agente Oficioso</button>
+                                                    <button type="button" onclick="toggleApoderado(this)" class="boton-accion">Agregar Apoderado</button>
+                                                    <button type="button" onclick="toggleAgenteOficioso(this)" class="boton-accion">Agregar Agente Oficioso</button>
                                                     <br><br>
                                                     <button type="button" onclick="agregarCamposAccionantes()">Agregar Accionante</button>
                                                 </td>
@@ -428,7 +425,7 @@
                                     <p>Indique el número de su Tarjeta Profesional</p>
                                     <input type="number" min="0" max="9999999999999999">
                                 </div>
-                                <button type="button" onclick="agregarCampo('victimas-partecivil')">Agregar Víctima(s)</button> <br> <br>
+                                <button type="button" onclick="agregarCampo('victimas-partecivil')">Agregar Víctima(s)</button> <br>
                                 <button type="button" onclick="toggleApoderado2(this)" class="boton-accion">Agregar Apoderado</button>
                                 <div id="apoderado2" style="display: none;">
                                     <h3>Apoderado</h3>
@@ -463,9 +460,7 @@
                                     <p>Indique la dirección física de la Fiscalía</p>
                                     <input type="email" required>
                                 </div>
-                            
-                                <button type="button" onclick="toggleacusador(this)">Agregar Acusador Privado</button>
-                                <div id="acusadorpriv" style="display: none;">
+
                                 <label for="acusador">Acusador Priado</label>
                                 <p>Indique el nombre del acusador privado</p>
                                 <input type="text">
@@ -478,9 +473,6 @@
                                 <label for="direcacusador">Dirección</label>
                                 <p>Indique la dirección del acusador privado</p>
                                 <input type="email">
-                                </div>
-                                <button type="button" onclick="toggleminpublico(this)">Agregar Ministerio Público</button>
-                                <div id="minpublico" style="display: none;">
                                 <label for="minpublico">Ministerio Público</label>
                                 <p>Indique el nombre de la Procuraduría Delegada</p>
                                 <input type="text">
@@ -493,7 +485,6 @@
                                 <label for="direcminpu">Dirección</label>
                                 <p>Indique la dirección del Ministerio Público</p>
                                 <input type="email">
-                            </div>
                           </td>
                     </td>
                 </tr>
@@ -519,6 +510,7 @@
                         <button type="submit" id="enviarButton">Enviar Información</button>
                     </div>        
      </form>
+
     <script src="script.js"></script>
 
     <footer>
@@ -526,7 +518,7 @@
             <div class="glass-overlay">
                 <p>
                     Dirección: Calle 12 No. 7-65 <br>
-                    Palacio de Justicia Alfonso Reyes Echandía, Bogotá D. C.  - Colombia <br>
+                    Palacio de Justicia Alfonso Reyes Echandía, Bogotá D. C. – Colombia <br>
                     Horario de atención: Lunes a Viernes de 8:00 a. m. a 1:00 p. m. y de 2:00 p. m. a 5:00 p. m. <br>
                     Teléfono de Conmutador: (+57) 601 562 2000
                 </p>

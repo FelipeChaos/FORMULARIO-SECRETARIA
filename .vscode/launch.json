@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "https://felipechaos.github.io/FORMULARIO-SECRETARIA/",
+            "request": "launch",
+            "url": "https://felipechaos.github.io/FORMULARIO-SECRETARIA/"
+        }
+    ]
+}
