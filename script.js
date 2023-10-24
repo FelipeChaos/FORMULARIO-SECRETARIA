@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     const formulario = document.getElementById("formulario");
-    const botonVolver = document.getElementById("boton-volver");
-    const botonInicio = document.getElementById("boton-inicio");
-    const botonBorrar = document.getElementById("boton-borrar");
     const listaSelect = document.getElementById("lista");
     const preguntasAdicionales = document.getElementById("preguntas-adicionales"); 
     const fechaInput = document.getElementById("fecha");
@@ -39,26 +36,29 @@ document.getElementById("current_date").innerHTML = formattedDate;
 var campos = document.querySelectorAll('input[type="text"], input[type="number"], input[type="email"], input[type="date"]');
 
 //Valida información tipo de proceso
-document.addEventListener("DOMContentLoaded", function () {
+function init() {
     const procesoSelect = document.getElementById("proceso");
     const procesoConstitucionalSpan = document.getElementById("proceso-constitucional");
     const procesoOrdinarioSpan = document.getElementById("proceso-ordinario");
-
     procesoSelect.addEventListener("change", function () {
-        const selectedProceso = procesoSelect.value;
-
-        // Ocultar todos los campos de proceso
-        procesoConstitucionalSpan.style.display = "none";
-        procesoOrdinarioSpan.style.display = "none";
-
-        // Mostrar los campos correspondientes al tipo de proceso seleccionado
-        if (selectedProceso === "Constitucional") {
-            procesoConstitucionalSpan.style.display = "block";
-        } else if (selectedProceso === "Ordinario") {
-            procesoOrdinarioSpan.style.display = "block";
-        }
+      const selectedProceso = procesoSelect.value;
+  
+      // Ocultar todos los campos de proceso
+      procesoConstitucionalSpan.style.display = "none";
+      procesoOrdinarioSpan.style.display = "none";
+  
+      // Mostrar los campos de proceso seleccionados
+      if (selectedProceso === "constitucional") {
+        procesoConstitucionalSpan.style.display = "block";
+      } else if (selectedProceso === "ordinario") {
+        procesoOrdinarioSpan.style.display = "block";
+      }
     });
-});
+  }
+  
+document.addEventListener("DOMContentLoaded", init);
+
+
 // Este script es para calcular el ancho de las columnas al cargar la página
 window.addEventListener('load', () => {
     const columns = document.querySelectorAll('.column');
@@ -296,7 +296,6 @@ botonMostrarSujetos.addEventListener("click", function () {
         tituloSujetosProcesales.style.display = "none"; // Ocultar el título
     }
 });
-
 // Agregar un controlador de eventos al botón "Información digital"
 botonMostrarinfoproceso.addEventListener("click", function () {
     if (tituloseccionproceso.style.display === "none") {
@@ -616,7 +615,6 @@ function eliminarCampo(contenedorId, botonEliminar) {
         }
     }
 }
-
 // Agregar campos a accionantes
 var contadorCamposAccionantes = 1;
 
@@ -896,7 +894,6 @@ function agregarCampo(nombreCampo) {
 
     // Agrega el nuevo campo al contenedor
     contenedor.appendChild(nuevoCampo);
-
     // Agrega un manejador de eventos para el botón de eliminación
     var eliminarCampoButton = nuevoCampo.querySelector(".eliminarCampoButton");
     eliminarCampoButton.addEventListener("click", function () {
@@ -1000,28 +997,19 @@ function addInput(processType) {
     container.appendChild(newInput);
     container.appendChild(deleteButton);
 }
-
-//agregar ministerio público y acusador privado
-function toggleacusador(button) {
-    var section = button.nextElementSibling;
-    if (section.style.display === 'none' || section.style.display === '') {
-        section.style.display = 'block';
-        button.textContent = 'Ocultar Acusador Privado';
-    } else {
-        section.style.display = 'none';
-        button.textContent = 'Agregar Acusador Privado';
+// Agregar un manejador de eventos al botón "Eliminar Campo"
+document.addEventListener("click", function (event) {
+    if (event.target && event.target.className === "eliminarCampoButton") {
+        eliminarCampo(event.target);
     }
+});
+
+function eliminarCampo(button) {
+    var container = button.parentElement;
+    var input = container.querySelector("input");
+
+    // Eliminar el input y el botón "Eliminar Campo" del contenedor
+    container.removeChild(input);
+    container.removeChild(button);
 }
 
-function toggleminpublico(button) {
-    var section = button.nextElementSibling;
-    if (section.style.display === 'none' || section.style.display === '') {
-        section.style.display = 'block';
-        button.textContent = 'Ocultar Ministerio Público';
-    } else {
-        section.style.display = 'none';
-        button.textContent = 'Agregar Ministerio Público';
-    }
-}
-//Botón submit - validación de campos para enviar 
- 
