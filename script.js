@@ -1024,4 +1024,3 @@ function toggleminpublico(button) {
     }
 }
 //Botón submit - validación de campos para enviar 
- 
