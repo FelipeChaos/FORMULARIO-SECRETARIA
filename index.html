@@ -515,9 +515,14 @@
                         <p>Anexe el hipervínculo para aceder al proceso</p>
                     <input type="url" required>
             </section>
-                    <div style="display: flex; justify-content: center;">
-                        <button type="submit" id="enviarButton">Enviar Información</button>
-                    </div>        
+            <section>
+            <div style="display: flex; justify-content: center;">
+                  <p>Indique su correo electrónico para recibir una copia de este formulario</p>            
+                    <input type="email" id="copiamail" placeholder="Correo electrónico">
+                    <button type="button" onclick="enviarFormulario()">Enviar Información</button>
+            </div>
+            <div id="mensaje"></div>    
+        </section>
      </form>
      <div class="notification">
         <p>Bienvenido!</p>

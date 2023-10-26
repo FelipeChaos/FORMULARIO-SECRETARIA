@@ -1024,3 +1024,13 @@ function toggleminpublico(button) {
     }
 }
 //Botón submit - validación de campos para enviar 
+function enviarFormulario() {
+    var nombre = document.getElementById('nombre').value;
+    var email = document.getElementById('email').value;
+
+    // Aquí iría tu lógica de envío a Python y el correo electrónico.
+    // Puedes hacer una solicitud a tu servidor backend aquí.
+
+    // Mostrar mensaje de éxito.
+    document.getElementById('mensaje').innerHTML = "Formulario enviado con éxito.";
+}
