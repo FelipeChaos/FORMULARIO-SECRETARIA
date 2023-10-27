@@ -56,6 +56,55 @@ section, .seccionproceso {
     border-radius: 15px;
 }
 
+#juzgado1rainstancia {
+    background-color: #f2f2f2; 
+    padding: 20px; 
+    border: 1px solid #ddd; 
+    border-radius: 15px; 
+    margin: 20px 0;
+}
+#juzgado1rainstancia .juzgado1 input,
+#juzgado1rainstancia .juzgado2 input {
+    width: 150%;}
+#juzgado1rainstancia .juzgado1 {
+    margin-right: 150px; /* Ajusta el margen derecho para separar los divs */
+}
+
+#juzgado1rainstancia .juzgado2 {
+    margin-left: 200px; /* Ajusta el margen izquierdo para separar los divs */
+}
+
+/* Ajustes para el contenedor de correo electrónico y el botón */
+#copia {
+    max-width: 30%; 
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+/* Ajustes para el párrafo */
+#copia p {
+    margin-bottom: 10px;
+}
+
+/* Ajustes para el input de correo electrónico */
+#copiamail {
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Ajustes para el botón en la sección de copia */
+#copia button {
+    width: auto;
+    margin-top: 10px;
+}
+
 #sujetos-procesales {
     text-align: left;
     padding: 15px;
@@ -82,7 +131,7 @@ input[type="email"],
 input[type="date"],
 input[type="url"],
 select, .custom-select select {
-    width: 70%;
+    width: 80%;
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -239,15 +288,15 @@ footer {
 
 .notification {
     position: fixed;
-    top: 25%;
-    left: 40%;
+    top: 17%;
+    left: 45%;
     width: 100px 100px;
-    padding: 35px 150px;
-    border-radius: 15px;
+    padding: 5px 15px;
+    border-radius: 25px;
     background-color: rgba(0, 0, 0, 0.7);
     color: #f6f5f9;
     text-align: 5%;
-    font-size: 50px;
+    font-size: 45px;
     text-transform: uppercase;
     box-shadow: 0 100px 10px rgba(0, 0, 0, 0.1);
     animation: fade-in 7s linear forwards, change-box-shadow 8s 0.25s linear forwards;
