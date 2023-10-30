@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Inicializa Flatpickr
     flatpickr("#fecha", {
-        locale: "es",
+        locale: " ",
         dateFormat: "d/m/Y", // Formato de fecha
         minDate: "01-01-1900",    // Fecha mínima 
         maxDate: "12-12-3050", // Fecha máxima
@@ -1023,14 +1023,34 @@ function toggleminpublico(button) {
         button.textContent = 'Agregar Ministerio Público';
     }
 }
+
+
 //Botón submit - validación de campos para enviar 
-function enviarFormulario() {
-    var nombre = document.getElementById('nombre').value;
-    var email = document.getElementById('email').value;
+function generatePDFandCSV() {
+    // Get the form data
+    const formData = new FormData(document.getElementById("formulario"));
+    
+    // Convert form data to CSV
+    const csvData = jsCSV(formData);
 
-    // Aquí iría tu lógica de envío a Python y el correo electrónico.
-    // Puedes hacer una solicitud a tu servidor backend aquí.
+    // Convert the form to a PDF
+    const formAsHTML = document.getElementById("formulario").outerHTML;
+    html2pdf()
+        .from(formAsHTML)
+        .outputPdf()
+        .then((pdf) => {
+            // Create a Blob with PDF data
+            const pdfBlob = new Blob([pdf.output("blob")], { type: "application/pdf" });
 
-    // Mostrar mensaje de éxito.
-    document.getElementById('mensaje').innerHTML = "Formulario enviado con éxito.";
+            // Create a URL for the PDF Blob
+            const pdfUrl = URL.createObjectURL(pdfBlob);
+
+            // Prepare an email link
+            const emailSubject = "Form Submission";
+            const emailBody = "Please find the attached PDF and CSV files.";
+            const emailLink = `mailto:correodeejemplo@mail.com?subject=${emailSubject}&body=${emailBody}&attachments=${pdfUrl},${csvData}`;
+            
+            // Open the email client with the prepared link
+            window.location.href = emailLink;
+        });
 }
