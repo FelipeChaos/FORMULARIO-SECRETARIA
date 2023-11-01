@@ -10,10 +10,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-csv/1.0.7/js-csv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
     <title>Envío de Expedientes Digitales</title>
 </head>
    <!-- seccion 1 -->
-<body> 
+<body oncontextmenu="returnfalse"> 
+    
     <header>
         <h1>ENVÍO DE EXPEDIENTES DIGITALES A LA <br> SALA DE CASACIÓN PENAL CORTE SUPREMA DE JUSTICIA</h1><br> <p style="color:black;"><strong>* Campos obligatorios.</strong></p>
     </header>
@@ -69,7 +71,7 @@
                             <input type="text" id="otrosProcesos" name="otrosProcesos" required>
                         </div>
 
-                        <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que concen de la acción Constitucional</p>
+                        <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conoce de la acción Constitucional</p>
                         <input type="text" id="magistradocsj" class="obligatorio" required>
                         <label for="motivo" class="obligatorio">Motivo de remisión:</label>
                         <input type="text" id="magistradoremi" class="obligatorio" required>
@@ -108,7 +110,7 @@
                                         <option value="opcionesley">Seleccione una opción</option>
                                         </select>
                                 </div>
-                                <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conocen del proceso</p>
+                                <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conoce del proceso</p>
                                 <input type="text" id="magistradocsj1" class="obligatorio" required>
                                 <label for="fechaauto" class="obligatorio">Fecha Auto:</label>
                                 <input type="date" id="fecha1" name="fecha" required>

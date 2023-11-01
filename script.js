@@ -1026,31 +1026,30 @@ function toggleminpublico(button) {
 
 
 //Botón submit - validación de campos para enviar 
-function generatePDFandCSV() {
-    // Get the form data
-    const formData = new FormData(document.getElementById("formulario"));
+document.getElementById("formulario").addEventListener("submit", function(event) {
+    event.preventDefault();
     
-    // Convert form data to CSV
-    const csvData = jsCSV(formData);
-
-    // Convert the form to a PDF
-    const formAsHTML = document.getElementById("formulario").outerHTML;
-    html2pdf()
-        .from(formAsHTML)
-        .outputPdf()
-        .then((pdf) => {
-            // Create a Blob with PDF data
-            const pdfBlob = new Blob([pdf.output("blob")], { type: "application/pdf" });
-
-            // Create a URL for the PDF Blob
-            const pdfUrl = URL.createObjectURL(pdfBlob);
-
-            // Prepare an email link
-            const emailSubject = "Form Submission";
-            const emailBody = "Please find the attached PDF and CSV files.";
-            const emailLink = `mailto:correodeejemplo@mail.com?subject=${emailSubject}&body=${emailBody}&attachments=${pdfUrl},${csvData}`;
-            
-            // Open the email client with the prepared link
-            window.location.href = emailLink;
-        });
-}
+    const formData = {};
+  
+    // Capturar los valores de los campos llenos
+    const formElements = this.elements;
+    for (let i = 0; i < formElements.length; i++) {
+      const field = formElements[i];
+      if (field.type !== "submit" && field.value.trim() !== '') {
+        formData[field.name] = field.value;
+      }
+    }
+  
+    if (Object.keys(formData).length > 0) {
+      // Generar un archivo PDF con pdfmake
+      const docDefinition = {
+        content: [
+          { text: 'Datos del formulario', style: 'header' },
+          formData,
+        ],
+      };
+      pdfmake.createPdf(docDefinition).download('formulario.pdf');
+    } else {
+      alert('No hay datos para guardar en el archivo.');
+    }
+  });
