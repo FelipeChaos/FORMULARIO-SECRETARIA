@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-csv/1.0.7/js-csv.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
     <title>Envío de Expedientes Digitales</title>
 </head>
    <!-- seccion 1 -->
@@ -18,7 +15,10 @@
     
     <header>
         <h1>ENVÍO DE EXPEDIENTES DIGITALES A LA <br> SALA DE CASACIÓN PENAL CORTE SUPREMA DE JUSTICIA</h1><br> <p style="color:black;"><strong>* Campos obligatorios.</strong></p>
-    </header>
+        <a href="https://cortesuprema.gov.co/sala-de-casacion-penal-secretaria/" target="_blank" class="home-link">
+            <img src="Home.png" alt="Inicio"></a>  
+  </header>
+
     <form id="formulario" action="enviar.py" method="post" autocomplete="off">
         <section id="seccionprocedencia">
             <h2>Información procedencia del proceso</h2>

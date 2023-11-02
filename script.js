@@ -783,29 +783,50 @@ function agregarCampoProcesado() {
     nuevoCampo.innerHTML = `
         <hr>
         <h3>Procesado(s)/Indiciado(s)/Acusado(s)/Condenado(s)/Postulado(s)/Menor(es) Infractor(es)</h3>
-        <div class="custom-select" style="display: block;">
-            <label for="nombreproc" class="obligatorio" required>Nombre</label>
-            <p>Indique el nombre completo del Procesado(s)/Indiciado(s)/Acusado(s)/Condenado(s)/Postulado(s), en caso de ser menor de edad digite solo las iniciales</p>
-            <input type="text" class="obligatorio" required>
-            <label for="tipodocordi" class="obligatorio">Tipo de documento</label>
-            <select name="tipodoc" id="tipodocordi">
-                <option value="seleciondoc">Seleccione un tipo de documento</option>
-                <option value="cedula">Cédula de Ciudadanía</option>
-                <option value="ti">Tarjeta de Identidad</option>
-                <option value="cedulaext">Cédula de Extranjería</option>
-                <option value="pasaporte">Pasaporte</option>
+        <div class="campo-procesado" style="display: block;" id="procesadocont">
+        <label for="nombreproc" class="obligatorio" required>Nombre</label>
+        <p>Indique el nombre completo del Procesado(s)/Indiciado(s)/Imputado(s)/Acusado(s)/<br>Condenado(s)/Postulado(s), en caso de ser menor de edad digite solo las iniciales</p>
+        <input type="text" id="nombreproc" class="obligatorio" required>
+        <label for="tipodocordi" class="obligatorio">Tipo de documento</label>
+        <select name="tipodoc" id="tipodocordi">
+            <option value="selecciondoc">Seleccione un tipo de documento</option>
+            <option value="cedula">Cédula de Ciudadanía</option>
+            <option value="ti">Tarjeta de Identidad</option>
+            <option value="cedulaext">Cédula de Extranjería</option>
+            <option value="pasaporte">Pasaporte</option>
+        </select>
+        <label for="numerodoc" class="obligatorio">Número de documento</label>
+        <p>Indique el número de Identificación personal</p>
+        <input type="number" min="0" required>
+        <div id="ordinarioSection" style="display: block;">
+            <label for="detenido">Está detenido:</label>
+            <select name="deteniopc" id="selectdetenido2">
+                <option value="seleccionedet">Seleccione una opción</option>
+                <option value="detenidosi">Si</option>
+                <option value="detenidono">No</option>
             </select>
-            <label for="numerodoc" class="obligatorio">Número de documento</label>
-            <p>Debe poner el número de Identificación personal</p>
-            <input type="number" min="0" required>
-            <label for="direccionresi" class="obligatorio">Dirección residencia</label>
-            <input type="text" name="direccionresi1" required>
-            <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
-            <input type="number" minlength="10" maxlength="10" required>
-            <label for="correocons1" class="obligatorio">Correo Electrónico</label>
-            <input type="email" name="correocons1" required>
-            <button type="button" class="eliminarCampoButton">Eliminar Campo</button>
+            <div id="carcelSection2" style="display: none;">
+                <label for="carcel">Lugar de reclusión:</label>
+                <select name="carcel" id="reclusion2">
+                    <option value="carcelselección">Seleccione una opción</option>
+                </select>
+                <div id="otroLugarReclusion2" style="display: none;">
+                    <label for="otroReclusion">Indique el lugar de reclusión:</label>
+                    <input type="text" name="otroReclusion">
+                </div>
+            </div>
+            <div id="direccionResidenciaSectionO" style="display: none;">
+                <label for="direccionresi" class="obligatorio">Dirección residencia</label>
+                <input type="text" name="direccionresi1">
+            </div>
         </div>
+        <label for="correocons1" class="obligatorio">Correo Electrónico</label>
+        <input type="email" name="correocons1" required>
+        <label for="teltute1" class="obligatorio">Teléfono de contacto</label>
+        <input type="number" minlength="10" maxlength="10" required><br>
+        <button type="button" class="eliminarCampoButton">Eliminar Campo</button>
+        <button type="button" onclick="toggleCamposApoderado(this)" class="boton-accion">Agregar Apoderado</button> <br> <br>
+    </div>
         <hr>
     `;
 
