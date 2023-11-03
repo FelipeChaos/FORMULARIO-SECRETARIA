@@ -40,7 +40,7 @@ msg.attach(part)
 # Envía el correo
 server = smtplib.SMTP('smtp.gmail.com', 587)
 server.starttls()
-server.login(FROM_EMAIL, "tucontraseña")
+server.login(FROM_EMAIL, "password")
 text = msg.as_string()
 server.sendmail(FROM_EMAIL, TO_EMAIL, text)
 server.quit()
