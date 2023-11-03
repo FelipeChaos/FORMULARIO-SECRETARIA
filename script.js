@@ -770,6 +770,18 @@ function toggleCamposDefensor(boton, divId) {
 }
 
 //ORDINARIOS
+// Función para mostrar u ocultar el div defensorfam
+document.getElementById('menores').addEventListener('change', function() {
+    var selectedOption = this.value;
+    var defensorFamDiv = document.getElementById('defensorfam');
+    
+    if (selectedOption === 'menoresi') {
+        defensorFamDiv.style.display = 'block';
+    } else {
+        defensorFamDiv.style.display = 'none';
+    }
+});
+
 
 // Función para agregar un nuevo campo procesado
 function agregarCampoProcesado() {
@@ -937,6 +949,7 @@ function toggleApoderado2(button) {
     }
 }
 
+
 // Agregar un manejador de eventos al botón "Agregar Víctima(s)"
 var agregarVictimasButton = document.getElementById("agregarCampoVictimas");
 agregarVictimasButton.addEventListener("click", function () {
@@ -1034,16 +1047,6 @@ function toggleacusador(button) {
     }
 }
 
-function toggleminpublico(button) {
-    var section = button.nextElementSibling;
-    if (section.style.display === 'none' || section.style.display === '') {
-        section.style.display = 'block';
-        button.textContent = 'Ocultar Ministerio Público';
-    } else {
-        section.style.display = 'none';
-        button.textContent = 'Agregar Ministerio Público';
-    }
-}
 
 
 //Botón submit - validación de campos para enviar 

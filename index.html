@@ -110,7 +110,7 @@
                                         <option value="opcionesley">Seleccione una opción</option>
                                         </select>
                                 </div>
-                                <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conoce del proceso</p>
+                                <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Nombre del Juez o Magistrado director del proceso</p>
                                 <input type="text" id="magistradocsj1" class="obligatorio" required>
                                 <label for="fechaauto" class="obligatorio">Fecha Auto:</label>
                                 <input type="date" id="fecha1" name="fecha" required>
@@ -194,7 +194,7 @@
                                 <label for="fechaauto" class="obligatorio">Fecha de prescipción:</label>
                                 <input type="date" id="fecha2" name="fecha" required> <br>
 
-                                <button id="juz2dainstan" type="button" onclick="toggleJuzgado2da()">Agregar Despacho 2da Instancia</button>
+                                <button id="juz2dainstan" type="button" onclick="toggleJuzgado2da()">Agregar Despacho 2da Instancia (Si lo hay)</button>
                             </section>
                                                               
                         <button id="mostrar-sujetos" type="button">Sujetos Procesales / <br> Partes Intervinientes</button><br><br>
@@ -383,10 +383,16 @@
                             </div>
                             <button type="button" onclick="agregarCampoProcesado()" style="position:left">Agregar otro procesado</button>
                             <td id="victimas-partecivil" style="display: none;">
-                                <h3>Victimas - Parte Civil</h3>
+                                <h3>Victimas</h3>
                                 <div class="text" style="display: block;">
-                                    <label for="nombrevic">Nombre Víctima - Parte Civil</label>
+                                    <label for="nombrevic">Nombre Víctima </label>
                                     <input type="text" id="nombrevic">
+                                    <label for="menore" id="menore">¿La víctima es menor de edad?</label>
+                                    <select name="menoropcion" id="menores">
+                                    <option value="menoropcion">Seleccione una opción</option>
+                                    <option value="menoresi">Si</option>
+                                    <option value="menoreno">No</option>
+                                    </select>
                                     <label for="tipodocvic">Tipo de documento</label>
                                     <select name="tipodocv" id="tipodocvic">
                                         <option value="selecciondoc">Seleccione un tipo de documento</option>
@@ -408,7 +414,23 @@
                                     <p>Dirección física para notificaciones.</p>
                                     <input type="text" id="dirvict">
                                 </div>
-                                <button type="button" onclick="toggleCamposDefensor(this, 'defensor')" class="boton-accion">Agregar Representante de Víctimas</button>
+                                <div id="defensorfam" style="display: none;">
+                                    <h3>Defensor de Familia</h3>
+                                        <div class="columnas">
+                                            <label for="nombredefensor" class="obligatorio">Nombre Completo</label>
+                                            <input type="text" name="nombredefensor" id="nombredefensor" required>
+                                            <label for="ceduladefensor" class="obligatorio">Cédula de Ciudadania</label>
+                                            <input type="text" name="ceduladefensor" required>
+                                            <label for="tarjetaprofdef" class="obligatorio">Tarjeta Profesional</label>
+                                            <input type="text" name="tarjetaprofdef" required>
+                                            <label for="correodef" class="obligatorio">Correo Electrónico</label>
+                                                <p>Relacione el correo electrónico aportado al Registro Nacional de Abogados y otros registrados en el expediente.</p>
+                                            <input type="email" name="correodef" required>
+                                            <label for="teldefensor" class="obligatorio">Teléfono de contacto</label>
+                                           <input type="number" minlength="10" maxlength="10" required>
+                                        </div>
+                                </div>
+                                <button type="button" onclick="toggleCamposDefensor(this, 'defensor')" class="boton-accion">Agregar Representante de Víctimas</button> <br> <br>
                                 <div id="defensor" style="display: none;">
                                     <label name="defensor" id="labeldefensor" class="obligatorio">Representante de Víctimas</label>
                                     <input type="text" id="defensorvic" required>
@@ -433,7 +455,7 @@
                                     <input type="number" min="0" max="9999999999999999">
                                 </div>
                                 <button type="button" onclick="agregarCampo('victimas-partecivil')">Agregar Víctima(s)</button> <br> <br>
-                                <button type="button" onclick="toggleApoderado2(this)" class="boton-accion">Agregar Apoderado</button>
+                                <button type="button" onclick="toggleApoderado2(this)" class="boton-accion">Agregar Apoderado</button> <br><br>
                                 <div id="apoderado2" style="display: none;">
                                     <h3>Apoderado</h3>
                                         <div class="columnas">
@@ -450,7 +472,6 @@
                                            <input type="number" minlength="10" maxlength="10" required>
                                         </div>
                                 </div>
-
                             </td>
                             <td id="fiscalia-procuraduria-container" style="display: none;">
                                 <div class="text" style="display: block;">
@@ -467,8 +488,21 @@
                                     <p>Indique la dirección física de la Fiscalía</p>
                                     <input type="email" required>
                                 </div>
-                            
-                                <button type="button" onclick="toggleacusador(this)">Agregar Acusador Privado</button>
+                                <div id="minpublico" style="display: block;">
+                                <label for="minpublico">Ministerio Público</label>
+                                <p>Indique el nombre de la Procuraduría Delegada</p>
+                                <input type="text">
+                                <label for="correominpu">Correo</label>
+                                <p>Indique el correo para las notificaciones</p>
+                                <input type="text">
+                                <label for="telefono">Teléfono</label>
+                                <p>Indique un número de teléfono de contacto</p>
+                                <input type="number" id="telminpub1" minlength="10" maxlength="10">
+                                <label for="direcminpu">Dirección</label>
+                                <p>Indique la dirección del Ministerio Público</p>
+                                <input type="email">
+                            </div>
+                            <button type="button" onclick="toggleacusador(this)">Agregar Acusador Privado</button>
                                 <div id="acusadorpriv" style="display: none;">
                                 <label for="acusador">Acusador Priado</label>
                                 <p>Indique el nombre del acusador privado</p>
@@ -483,21 +517,6 @@
                                 <p>Indique la dirección del acusador privado</p>
                                 <input type="email">
                                 </div>
-                                <button type="button" onclick="toggleminpublico(this)">Agregar Ministerio Público</button>
-                                <div id="minpublico" style="display: none;">
-                                <label for="minpublico">Ministerio Público</label>
-                                <p>Indique el nombre de la Procuraduría Delegada</p>
-                                <input type="text">
-                                <label for="correominpu">Correo</label>
-                                <p>Indique el correo para las notificaciones</p>
-                                <input type="text">
-                                <label for="telefono">Teléfono</label>
-                                <p>Indique un número de teléfono de contacto</p>
-                                <input type="number" id="telminpub1" minlength="10" maxlength="10">
-                                <label for="direcminpu">Dirección</label>
-                                <p>Indique la dirección del Ministerio Público</p>
-                                <input type="email">
-                            </div>
                           </td>
                     </td>
                     </tr>
@@ -521,11 +540,11 @@
             </section>
             <section id="copia">
                 <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-                    <p for="remitente" id="remitente">Digite el nombre del empleado que remite</p>
+                    <p for="remitente" id="remitente" class="obligatorio">Digite el nombre del empleado que remite</p>
                     <input type="text">
-                    <p for="cargo" id="cargoremite">Digite el cargo del empleado que remite</p>
+                    <p for="cargo" id="cargoremite" class="obligatorio">Digite el cargo del empleado que remite</p>
                     <input type="text">
-                    <p>Indique su correo electrónico para recibir una copia de este formulario</p>
+                    <p class="obligatorio">Indique su correo electrónico para recibir una copia de este formulario</p>
                     <input type="email" id="copiamail" placeholder="Correo electrónico">
 
                 </div>
