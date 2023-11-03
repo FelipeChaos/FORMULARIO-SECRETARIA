@@ -101,7 +101,7 @@ section, .seccionproceso {
 }
 
 /* Ajustes para el párrafo */
-#copia p {
+#copia, #cargoremite, #remitente p {
     margin-bottom: 10px;
 }
 

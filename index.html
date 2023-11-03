@@ -71,7 +71,7 @@
                             <input type="text" id="otrosProcesos" name="otrosProcesos" required>
                         </div>
 
-                        <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Digite el despacho judicial que conoce de la acción Constitucional</p>
+                        <label for="magistrado" class="obligatorio">Juez / Magistrado:</label> <p>Nombre del Juez o Magistrado director del proceso</p>
                         <input type="text" id="magistradocsj" class="obligatorio" required>
                         <label for="motivo" class="obligatorio">Motivo de remisión:</label>
                         <input type="text" id="magistradoremi" class="obligatorio" required>
@@ -86,7 +86,7 @@
                                 </select>
                             </div>
                             <span id="preguntas-adicionales-si-constitucional" style="display: none;">
-                                <label for="cuantasveces-constitucional">¿Cuantas veces la Corte Suprema de Justicia tuvo conocimiento?</label>
+                                <label for="cuantasveces-constitucional">¿Cuantas veces la Sala de Casación Penal de la Corte Suprema de Justicia ha tenido conocimiento?</label>
                                 <input type="number" id="cuantasveces-constitucional" name="cuantas-veces-constitucional">
                                 <label for="magistrado-constitucional">Seleccione el Magistrado que conoció previamente:</label>
                                 <select id="magistrado-constitucional" name="magistrado-que-conocio-constitucional">
@@ -131,7 +131,7 @@
                                     </select>
                                 </div>
                                 <span id="preguntas-adicionales-si-ordinario" style="display: none;">
-                                    <label for="cuantasveces-ordinario">¿Cuantas veces la Corte Suprema de Justicia tuvo conocimiento?</label>
+                                    <label for="cuantasveces-ordinario">¿Cuantas veces la Sala de Casación Penal de la Corte Suprema de Justicia ha tenido conocimiento?</label>
                                     <input type="number" id="cuantasveces-ordinario" name="cuantas-veces-ordinario">
                                     <label for="magistrados-ordinario">Seleccione el Magistrado que conoció previamente (Ordinario):</label>
                                     <select id="magistrados-ordinario" name="magistradoqueconocio-ordinario">
@@ -145,7 +145,7 @@
 <!-- seccion2 -->
                             <!-- Sección Juzgados Primera y Segunda Instancia -->
                             <section id="juzgado1rainstancia" style="display: none;">
-                                <h2>Juzgado / Tribunal de conocimiento previo</h2>
+                                <h2>Información Juzgado / Tribunal de conocimiento</h2>
                                 <div class="columnasjuzgados">
                                     <table class="columnjuzgados">
                                         <tr>
@@ -194,7 +194,7 @@
                                 <label for="fechaauto" class="obligatorio">Fecha de prescipción:</label>
                                 <input type="date" id="fecha2" name="fecha" required> <br>
 
-                                <button id="juz2dainstan" type="button" onclick="toggleJuzgado2da()">Agregar Juzgado 2da Instancia</button>
+                                <button id="juz2dainstan" type="button" onclick="toggleJuzgado2da()">Agregar Despacho 2da Instancia</button>
                             </section>
                                                               
                         <button id="mostrar-sujetos" type="button">Sujetos Procesales / <br> Partes Intervinientes</button><br><br>
@@ -521,8 +521,13 @@
             </section>
             <section id="copia">
                 <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                    <p for="remitente" id="remitente">Digite el nombre del empleado que remite</p>
+                    <input type="text">
+                    <p for="cargo" id="cargoremite">Digite el cargo del empleado que remite</p>
+                    <input type="text">
                     <p>Indique su correo electrónico para recibir una copia de este formulario</p>
                     <input type="email" id="copiamail" placeholder="Correo electrónico">
+
                 </div>
                 <div id="mensaje"></div>    
             </section>
