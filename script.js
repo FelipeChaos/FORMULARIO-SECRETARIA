@@ -20,13 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
         minDate: "01-01-1900",    // Fecha mínima 
         maxDate: "12-12-3050", // Fecha máxima
     });
-
-    formulario.addEventListener("submit", function (event) {
-        // lógica para enviar el formulario por correo
-        // usar AJAX o enviar los datos al servidor
-        event.preventDefault(); // Evita el envío por defecto
-        alert("Formulario enviado con éxito");
-    });
 });
 
 // Fecha al inicio del formulario
@@ -1048,32 +1041,84 @@ function toggleacusador(button) {
 }
 
 
-
-//Botón submit - validación de campos para enviar 
-document.getElementById("formulario").addEventListener("submit", function(event) {
-    event.preventDefault();
-    
+//Botón submit 
+// Recopila los valores de los campos de formulario
+function recopilarDatosDelFormulario() {
     const formData = {};
   
-    // Capturar los valores de los campos llenos
-    const formElements = this.elements;
-    for (let i = 0; i < formElements.length; i++) {
-      const field = formElements[i];
-      if (field.type !== "submit" && field.value.trim() !== '') {
-        formData[field.name] = field.value;
-      }
-    }
+    // Itera a través de los campos y agrega sus valores a formData
+    const campos = document.querySelectorAll('input, select, text, date, url, mail');
+    campos.forEach(campo => {
+      formData[campo.name] = campo.value;
+    });
   
-    if (Object.keys(formData).length > 0) {
-      // Generar un archivo PDF con pdfmake
-      const docDefinition = {
-        content: [
-          { text: 'Datos del formulario', style: 'header' },
-          formData,
-        ],
-      };
-      pdfmake.createPdf(docDefinition).download('formulario.pdf');
-    } else {
-      alert('No hay datos para guardar en el archivo.');
+    return formData;
+  }
+  
+  // Valida los campos requeridos
+  function validarCamposRequeridos(formData) {
+    let valido = true;
+  
+    // Itera a través de los campos requeridos y verifica que no estén vacíos
+    const camposRequeridos = document.querySelectorAll('[required]');
+    camposRequeridos.forEach(campo => {
+      if (!formData[campo.name]) {
+        valido = false;
+        alert(`El campo ${campo.name} es requerido.`);
+      }
+    });
+  
+    return valido;
+  }
+  
+  // Envía el formulario
+  function enviarFormulario() {
+    const formData = recopilarDatosDelFormulario();
+  
+    if (validarCamposRequeridos(formData)) {
+      // Realiza la solicitud POST al servidor
+      fetch('URL_DEL_SERVIDOR', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if (response.status === 200) {
+            alert('Formulario enviado exitosamente.');
+          } else {
+            alert('Error al enviar el formulario.');
+          }
+        })
+        .catch(error => {
+          alert('Error al enviar el formulario: ' + error);
+        });
     }
-  });
+  }
+  // Escucha un evento para enviar el formulario
+  const botonEnviar = document.getElementById('boton-enviar');
+  botonEnviar.addEventListener('click', enviarFormulario);
+//validación correo
+    const dominiosPermitidos = [
+        'gmail.com',
+        'yahoo.com',
+        'hotmail.com',
+        'hubspot.com',
+        'protonmail.com',
+        'icloud.com',
+        'outlook.com',
+        'mailbox.org',        
+    ];
+
+    function validarCorreo(input) {
+        const correo = input.value;
+        const partesCorreo = correo.split('@');
+        
+        if (partesCorreo.length !== 2 || !dominiosPermitidos.includes(partesCorreo[1])) {
+            input.setCustomValidity("El correo electrónico no es válido o el dominio no está permitido.");
+        } else {
+            input.setCustomValidity("");
+        }
+    }
+    
